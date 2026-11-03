@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Trainer Dashboard — FORGE FITNESS</title>
+  <meta name="description" content="Private administration portal for FORGE FITNESS consultation management, lead pipelines, and schedule.">
+  <meta name="theme-color" content="#090B0A">
+  <meta name="robots" content="noindex, nofollow">
+
+  <!-- Google Fonts: Syne (Display) & Plus Jakarta Sans (Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS (Local Bundle) -->
+  <script src="../assets/js/tailwind.min.js"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              black: "#090B0A",
+              graphite: "#141714",
+              surface: "#1A1E1A",
+              border: "#272E27",
+              lime: "#B8FF38",
+              limeHover: "#a3ea2c",
+              softWhite: "#F5F6F2",
+              muted: "#A4AAA0"
+            }
+          },
+          fontFamily: {
+            display: ["Syne", "sans-serif"],
+            sans: ["'Plus Jakarta Sans'", "sans-serif"]
+          },
+          boxShadow: {
+            "glow-lime": "0 0 35px -5px rgba(184, 255, 56, 0.45)",
+            "glow-lime-sm": "0 0 18px -2px rgba(184, 255, 56, 0.3)"
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="../assets/images/logo.png">
+
+  <!-- Project Stylesheets -->
+  <link rel="stylesheet" href="../assets/css/main.css?v=2.0">
+  <link rel="stylesheet" href="../assets/css/trainer.css?v=2.0">
+
+  <!-- BFCache Navigation & Session Guard -->
+  <script>
+    window.addEventListener('pageshow', function (event) {
+      if (event.persisted) {
+        window.location.reload();
+      }
+    });
+  </script>
+</head>
+<body class="bg-brand-black text-brand-softWhite min-h-screen antialiased flex flex-col lg:flex-row relative overflow-x-hidden">
+
+  <!-- Mobile Sidebar Backdrop -->
+  <div id="sidebar-backdrop" onclick="window.closeMobileSidebar()" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-40 hidden lg:hidden" aria-hidden="true"></div>
+
+  <!-- =========================================================================
+       SIDEBAR NAVIGATION
+       ========================================================================= -->
+  <aside id="dashboard-sidebar" class="fixed inset-y-0 left-0 z-50 w-64 bg-brand-graphite border-r border-white/10 flex flex-col justify-between transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out">
+    
+    <!-- Top Brand & Profile Area -->
+    <div class="p-6">
+      <!-- Logo Header -->
+      <div class="flex items-center justify-between pb-6 border-b border-white/10">
+        <a href="../index.html" class="flex items-center gap-2.5 group">
+          <img src="../assets/images/logo.png" alt="FORGE FITNESS Logo" class="h-8 w-auto object-contain filter drop-shadow-[0_0_12px_rgba(184,255,56,0.35)]" width="180" height="25">
+        </a>
+        <button type="button" id="mobile-sidebar-close" onclick="window.closeMobileSidebar()" class="lg:hidden text-brand-muted hover:text-white p-1" aria-label="Close sidebar">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" stroke-width="2" stroke-linecap="round"></path></svg>
+        </button>
+      </div>
+
+      <!-- Coach Mini Badge -->
+      <div class="mt-5 p-3 rounded-xl bg-brand-surface border border-white/5 flex items-center gap-3">
+        <img src="../assets/images/coach-haisam.jpg" alt="Coach Haisam" class="w-10 h-10 rounded-full object-cover border border-brand-lime/40 shrink-0">
+        <div class="overflow-hidden">
+          <div class="text-xs font-bold text-white truncate" id="sidebar-coach-name">Coach Haisam</div>
+          <div class="text-[11px] text-brand-lime font-mono">Head Performance Coach</div>
+        </div>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="mt-6 space-y-1.5" aria-label="Dashboard Navigation">
+        <a href="#overview" data-view="overview" class="sidebar-link active">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" stroke-width="2"></path></svg>
+          <span>Overview</span>
+        </a>
+
+        <a href="#bookings" data-view="bookings" class="sidebar-link">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-width="2"></path></svg>
+          <span>Booking Requests</span>
+        </a>
+
+        <a href="#consultations" data-view="consultations" class="sidebar-link">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" stroke-width="2"></path></svg>
+          <span>Upcoming Calls</span>
+        </a>
+
+        <a href="#leads" data-view="leads" class="sidebar-link">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" stroke-width="2"></path></svg>
+          <span>Client Leads</span>
+        </a>
+
+        <a href="#availability" data-view="availability" class="sidebar-link">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke-width="2"></path></svg>
+          <span>Availability</span>
+        </a>
+
+        <a href="#settings" data-view="settings" class="sidebar-link">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" stroke-width="2"></path><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-width="2"></path></svg>
+          <span>Settings</span>
+        </a>
+      </nav>
+    </div>
+
+    <!-- Bottom Actions -->
+    <div class="p-6 border-t border-white/10 space-y-2">
+      <a href="../index.html" class="flex items-center gap-2 text-xs font-semibold text-brand-muted hover:text-white px-3 py-2 rounded-lg transition-colors">
+        <svg class="w-4 h-4 text-brand-lime" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" stroke-width="2"></path></svg>
+        <span>Public Website</span>
+      </a>
+      <button type="button" class="logout-btn w-full flex items-center gap-2 text-xs font-semibold text-red-400 hover:text-red-300 hover:bg-red-950/20 px-3 py-2 rounded-lg transition-colors">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" stroke-width="2"></path></svg>
+        <span>Sign Out</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- =========================================================================
+       MAIN DASHBOARD CONTENT AREA
+       ========================================================================= -->
+  <div class="flex-grow lg:pl-64 flex flex-col min-h-screen">
+    
+    <!-- Top Navigation Header -->
+    <header class="sticky top-0 z-30 bg-brand-graphite/90 backdrop-blur-md border-b border-white/10 h-16 sm:h-20 px-4 sm:px-8 flex items-center justify-between">
+      
+      <!-- Left: Mobile Toggle & Page Title -->
+      <div class="flex items-center gap-3">
+        <button type="button" id="mobile-sidebar-toggle" onclick="window.openMobileSidebar()" class="lg:hidden p-2 rounded-lg bg-brand-surface border border-white/10 text-brand-lime hover:text-white" aria-label="Open sidebar">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16" stroke-width="2"></path></svg>
+        </button>
+        <div>
+          <h1 id="current-page-title" class="font-display font-black text-lg sm:text-2xl text-white uppercase tracking-tight">
+            Dashboard Overview
+          </h1>
+          <p class="hidden sm:block text-[11px] text-brand-muted font-mono">FORGE FITNESS Performance Management System</p>
+        </div>
+      </div>
+
+      <!-- Right: Notification Icon & Profile -->
+      <div class="flex items-center gap-3 sm:gap-4">
+        
+        <!-- Notifications Bell -->
+        <div class="relative">
+          <button type="button" id="notifications-btn" onclick="window.toggleNotificationsDropdown(event)" class="p-2.5 rounded-full bg-brand-surface border border-white/10 text-brand-muted hover:text-brand-lime hover:border-brand-lime/40 transition-colors relative" aria-label="Notifications">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" stroke-width="2"></path></svg>
+            <span id="header-notif-badge" class="hidden absolute top-0.5 right-0.5 w-4 h-4 rounded-full bg-brand-lime text-brand-black text-[10px] font-extrabold flex items-center justify-center">2</span>
+          </button>
+
+          <!-- Notification Dropdown -->
+          <div id="notifications-dropdown" class="notification-dropdown">
+            <div class="p-3.5 border-b border-white/10 flex items-center justify-between">
+              <span class="text-xs font-bold text-white uppercase tracking-wider">Notifications</span>
+              <button type="button" id="notif-mark-all-read" onclick="window.markAllNotificationsReadAction()" class="text-[11px] text-brand-lime hover:underline font-semibold">Mark all as read</button>
+            </div>
+            <div id="notifications-dropdown-list" class="max-h-80 overflow-y-auto">
+              <!-- Rendered via JS -->
+            </div>
+            <div class="p-2.5 border-t border-white/5 text-center bg-brand-surface/40">
+              <span class="text-[10px] text-brand-muted font-mono">Phase 1 Demo Notifications</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Profile Card -->
+        <div class="flex items-center gap-2.5 pl-2 sm:pl-4 border-l border-white/10">
+          <img src="../assets/images/coach-haisam.jpg" alt="Coach Haisam" class="w-8 h-8 sm:w-9 sm:h-9 rounded-full object-cover border border-brand-lime/40">
+          <div class="hidden sm:block text-left">
+            <div id="header-trainer-name" class="text-xs font-bold text-white">Coach Haisam</div>
+            <div id="header-trainer-role" class="text-[10px] text-brand-muted">Lead Coach</div>
+          </div>
+        </div>
+
+      </div>
+    </header>
+
+    <!-- Main Views Container -->
+    <main class="flex-grow p-4 sm:p-8 max-w-7xl w-full mx-auto space-y-8">
+
+      <!-- ===================================================================
+           VIEW 1: OVERVIEW
+           =================================================================== -->
+      <section id="view-overview" class="dashboard-view-panel space-y-8">
+        
+        <!-- Welcome Section -->
+        <div class="dashboard-card p-6 sm:p-8 relative overflow-hidden bg-gradient-to-r from-brand-graphite to-brand-surface border border-brand-lime/20">
+          <div class="relative z-10 max-w-2xl">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-lime/10 text-brand-lime text-xs font-bold font-mono uppercase mb-3">
+              <span>● ACTIVE COACHING SESSION</span>
+            </div>
+            <h2 class="font-display font-black text-2xl sm:text-4xl text-white tracking-tight uppercase">
+              Welcome Back, Coach!
+            </h2>
+            <p class="text-brand-muted text-xs sm:text-sm leading-relaxed mt-2">
+              Here is your active pipeline summary. Review pending consultation bookings, update your schedule availability, and advance athlete inquiries.
+            </p>
+            <div class="mt-5 flex flex-wrap gap-3">
+              <a href="#bookings" data-view="bookings" class="px-5 py-2.5 rounded-full bg-brand-lime text-brand-black text-xs font-extrabold uppercase tracking-wider hover:bg-brand-limeHover transition-colors shadow-glow-lime-sm">
+                Review Pending Bookings
+              </a>
+              <a href="#availability" data-view="availability" class="px-4 py-2.5 rounded-full bg-brand-surface border border-white/10 text-brand-softWhite text-xs font-bold uppercase tracking-wider hover:border-brand-lime/40 transition-colors">
+                Manage Schedule
+              </a>
+            </div>
+          </div>
+          <!-- Decorative Glow Circle -->
+          <div class="absolute -right-16 -bottom-16 w-64 h-64 bg-brand-lime/10 rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
+        </div>
+
+        <!-- Statistics Cards Grid -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+          
+          <div class="dashboard-card p-5">
+            <div class="flex items-center justify-between text-brand-muted text-xs font-bold uppercase tracking-wider">
+              <span>Total Enquiries</span>
+              <span class="p-1.5 rounded-lg bg-sky-500/10 text-sky-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" stroke-width="2"></path></svg>
+              </span>
+            </div>
+            <div class="font-display font-extrabold text-3xl sm:text-4xl text-white mt-3" id="stat-total-enquiries">16</div>
+            <div class="text-[11px] text-sky-400 font-mono mt-1">+18% this month</div>
+          </div>
+
+          <div class="dashboard-card p-5 border-brand-lime/20">
+            <div class="flex items-center justify-between text-brand-muted text-xs font-bold uppercase tracking-wider">
+              <span>Pending Requests</span>
+              <span class="p-1.5 rounded-lg bg-yellow-500/10 text-yellow-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke-width="2"></path></svg>
+              </span>
+            </div>
+            <div class="font-display font-extrabold text-3xl sm:text-4xl text-brand-lime mt-3" id="stat-pending-bookings">3</div>
+            <div class="text-[11px] text-yellow-400 font-mono mt-1">Requires your review</div>
+          </div>
+
+          <div class="dashboard-card p-5">
+            <div class="flex items-center justify-between text-brand-muted text-xs font-bold uppercase tracking-wider">
+              <span>Confirmed Calls</span>
+              <span class="p-1.5 rounded-lg bg-brand-lime/10 text-brand-lime">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke-width="2"></path></svg>
+              </span>
+            </div>
+            <div class="font-display font-extrabold text-3xl sm:text-4xl text-white mt-3" id="stat-confirmed-consultations">3</div>
+            <div class="text-[11px] text-brand-lime font-mono mt-1">Ready on calendar</div>
+          </div>
+
+          <div class="dashboard-card p-5">
+            <div class="flex items-center justify-between text-brand-muted text-xs font-bold uppercase tracking-wider">
+              <span>Upcoming Calls</span>
+              <span class="p-1.5 rounded-lg bg-purple-500/10 text-purple-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" stroke-width="2"></path></svg>
+              </span>
+            </div>
+            <div class="font-display font-extrabold text-3xl sm:text-4xl text-white mt-3" id="stat-upcoming-calls">3</div>
+            <div class="text-[11px] text-brand-muted font-mono mt-1">This week</div>
+          </div>
+
+        </div>
+
+        <!-- Two Column Layout: Recent Requests & Activity Feed -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          
+          <!-- Recent Requests Table (8 Cols) -->
+          <div class="lg:col-span-8 dashboard-card p-6">
+            <div class="flex items-center justify-between pb-4 border-b border-white/10 mb-4">
+              <div>
+                <h3 class="font-display font-bold text-lg text-white uppercase tracking-tight">Recent Booking Requests</h3>
+                <p class="text-xs text-brand-muted">Latest client consultation submissions.</p>
+              </div>
+              <a href="#bookings" data-view="bookings" class="text-xs text-brand-lime hover:underline font-bold uppercase tracking-wider">
+                View All →
+              </a>
+            </div>
+
+            <div class="table-container">
+              <table class="w-full text-left border-collapse">
+                <thead>
+                  <tr class="text-[11px] font-bold uppercase tracking-wider text-brand-muted border-b border-white/10">
+                    <th class="py-2.5 px-4">ID</th>
+                    <th class="py-2.5 px-4">Client</th>
+                    <th class="py-2.5 px-4">Goal</th>
+                    <th class="py-2.5 px-4">Requested</th>
+                    <th class="py-2.5 px-4">Status</th>
+                    <th class="py-2.5 px-4 text-right">Action</th>
+                  </tr>
+                </thead>
+                <tbody id="overview-recent-bookings-body">
+                  <!-- Rendered via JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Activity Stream (4 Cols) -->
+          <div class="lg:col-span-4 dashboard-card p-6">
+            <div class="pb-4 border-b border-white/10 mb-4">
+              <h3 class="font-display font-bold text-lg text-white uppercase tracking-tight">Live Activity Log</h3>
+              <p class="text-xs text-brand-muted">System audit trail & notifications.</p>
+            </div>
+            <div id="overview-activity-feed" class="space-y-1">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           VIEW 2: BOOKING REQUESTS
+           =================================================================== -->
+      <section id="view-bookings" class="dashboard-view-panel hidden space-y-6">
+        
+        <!-- Controls Header -->
+        <div class="dashboard-card p-5 sm:p-6 space-y-4">
+          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div>
+              <h2 class="font-display font-black text-xl sm:text-2xl text-white uppercase tracking-tight">
+                Consultation Booking Requests
+              </h2>
+              <p class="text-xs text-brand-muted">Review, confirm, reschedule, or decline potential athlete bookings.</p>
+            </div>
+            <span id="bookings-count-badge" class="px-3 py-1 rounded-full bg-brand-surface border border-white/10 text-xs font-mono text-brand-lime font-bold">
+              8 found
+            </span>
+          </div>
+
+          <!-- Filters Row -->
+          <div class="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-3 pt-2 border-t border-white/5">
+            <!-- Search -->
+            <div class="relative flex-grow max-w-md">
+              <input 
+                type="text" 
+                id="bookings-search-input" 
+                oninput="window.handleBookingsSearch(this.value)"
+                placeholder="Search by client name, email, ID, or goal..."
+                class="w-full pl-9 pr-4 py-2 rounded-xl bg-brand-surface border border-brand-border text-xs text-white placeholder-brand-muted focus:border-brand-lime focus:outline-none">
+              <svg class="w-4 h-4 text-brand-muted absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-width="2"></path></svg>
+            </div>
+
+            <!-- Status Tabs -->
+            <div class="flex items-center gap-1 overflow-x-auto pb-1 lg:pb-0">
+              <button type="button" data-bookings-filter="all" class="tab-btn active">All</button>
+              <button type="button" data-bookings-filter="pending" class="tab-btn">Pending</button>
+              <button type="button" data-bookings-filter="confirmed" class="tab-btn">Confirmed</button>
+              <button type="button" data-bookings-filter="rejected" class="tab-btn">Rejected</button>
+              <button type="button" data-bookings-filter="cancelled" class="tab-btn">Cancelled</button>
+            </div>
+
+            <!-- Date Filter -->
+            <div class="flex items-center gap-2">
+              <input type="date" id="bookings-date-filter" class="px-2.5 py-1.5 rounded-lg bg-brand-surface border border-brand-border text-xs text-brand-softWhite focus:border-brand-lime focus:outline-none">
+              <button type="button" id="bookings-clear-filter" class="text-xs text-brand-muted hover:text-white px-2 py-1">Clear</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bookings Desktop Table -->
+        <div class="dashboard-card p-6 hidden md:block">
+          <div class="table-container">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr class="text-[11px] font-bold uppercase tracking-wider text-brand-muted border-b border-white/10">
+                  <th class="py-3 px-4">Booking ID</th>
+                  <th class="py-3 px-4">Client Contact</th>
+                  <th class="py-3 px-4">Objective & Experience</th>
+                  <th class="py-3 px-4">Scheduled For</th>
+                  <th class="py-3 px-4">Status</th>
+                  <th class="py-3 px-4 text-right">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="bookings-table-body">
+                <!-- Rendered via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Bookings Mobile Card List -->
+        <div id="bookings-mobile-cards" class="md:hidden space-y-3">
+          <!-- Rendered via JS -->
+        </div>
+
+      </section>
+
+      <!-- ===================================================================
+           VIEW 3: UPCOMING CONSULTATIONS
+           =================================================================== -->
+      <section id="view-consultations" class="dashboard-view-panel hidden space-y-6">
+        
+        <div class="dashboard-card p-5 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div>
+            <h2 class="font-display font-black text-xl sm:text-2xl text-white uppercase tracking-tight">
+              Confirmed Upcoming Consultations
+            </h2>
+            <p class="text-xs text-brand-muted">Video calls scheduled with vetted athletes. Connect and conduct initial biomechanical intake.</p>
+          </div>
+          <div class="flex items-center gap-3">
+            <span id="consultations-count-badge" class="px-3 py-1 rounded-full bg-brand-lime/10 border border-brand-lime/30 text-xs font-mono text-brand-lime font-bold">
+              3 Confirmed
+            </span>
+          </div>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="max-w-md">
+          <input 
+            type="text" 
+            id="consultations-search-input" 
+            oninput="window.handleConsultationsSearch(this.value)"
+            placeholder="Search upcoming calls by client name or goal..."
+            class="w-full px-4 py-2 rounded-xl bg-brand-surface border border-brand-border text-xs text-white placeholder-brand-muted focus:border-brand-lime focus:outline-none">
+        </div>
+
+        <!-- Grid of Consultations Cards -->
+        <div id="consultations-cards-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Rendered via JS -->
+        </div>
+
+      </section>
+
+      <!-- ===================================================================
+           VIEW 4: CLIENT LEADS
+           =================================================================== -->
+      <section id="view-leads" class="dashboard-view-panel hidden space-y-6">
+        
+        <div class="dashboard-card p-5 sm:p-6 space-y-4">
+          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div>
+              <h2 class="font-display font-black text-xl sm:text-2xl text-white uppercase tracking-tight">
+                Client Leads Pipeline
+              </h2>
+              <p class="text-xs text-brand-muted">Inquiries captured through the public website intake consultation form.</p>
+            </div>
+            <div class="flex items-center gap-3">
+              <span id="leads-count-badge" class="px-3 py-1 rounded-full bg-brand-surface border border-white/10 text-xs font-mono text-brand-lime font-bold">
+                8 Leads
+              </span>
+              <button type="button" onclick="window.openAddLeadModal()" class="px-3.5 py-1.5 rounded-full bg-brand-lime text-brand-black text-xs font-extrabold uppercase tracking-wider hover:bg-brand-limeHover transition-colors shadow-glow-lime-sm">
+                + Add Lead
+              </button>
+            </div>
+          </div>
+
+          <!-- Controls -->
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 pt-2 border-t border-white/5">
+            <div class="relative flex-grow max-w-md">
+              <input 
+                type="text" 
+                id="leads-search-input" 
+                oninput="window.handleLeadsSearch(this.value)"
+                placeholder="Search leads by name, email, or goal..."
+                class="w-full pl-9 pr-4 py-2 rounded-xl bg-brand-surface border border-brand-border text-xs text-white placeholder-brand-muted focus:border-brand-lime focus:outline-none">
+              <svg class="w-4 h-4 text-brand-muted absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-width="2"></path></svg>
+            </div>
+
+            <!-- Leads Status Tabs -->
+            <div class="flex items-center gap-1 overflow-x-auto pb-1 sm:pb-0">
+              <button type="button" data-leads-filter="all" class="tab-btn active">All</button>
+              <button type="button" data-leads-filter="new" class="tab-btn">New</button>
+              <button type="button" data-leads-filter="contacted" class="tab-btn">Contacted</button>
+              <button type="button" data-leads-filter="interested" class="tab-btn">Interested</button>
+              <button type="button" data-leads-filter="converted" class="tab-btn">Converted</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Leads Table -->
+        <div class="dashboard-card p-6">
+          <div class="table-container">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr class="text-[11px] font-bold uppercase tracking-wider text-brand-muted border-b border-white/10">
+                  <th class="py-3 px-4">Lead ID</th>
+                  <th class="py-3 px-4">Athlete Name</th>
+                  <th class="py-3 px-4">Phone</th>
+                  <th class="py-3 px-4">Goal & Background</th>
+                  <th class="py-3 px-4">Enquiry Date</th>
+                  <th class="py-3 px-4">Pipeline Status</th>
+                  <th class="py-3 px-4 text-right">Details</th>
+                </tr>
+              </thead>
+              <tbody id="leads-table-body">
+                <!-- Rendered via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ===================================================================
+           VIEW 5: AVAILABILITY MANAGEMENT
+           =================================================================== -->
+      <section id="view-availability" class="dashboard-view-panel hidden space-y-8">
+        
+        <div class="dashboard-card p-5 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div>
+            <h2 class="font-display font-black text-xl sm:text-2xl text-white uppercase tracking-tight">
+              Consultation Availability & Schedule
+            </h2>
+            <p class="text-xs text-brand-muted">Set weekly coaching hours, block holidays, and configure call constraints.</p>
+          </div>
+          <button type="button" onclick="window.saveAvailabilitySettingsAction()" class="px-5 py-2.5 rounded-full bg-brand-lime text-brand-black text-xs font-extrabold uppercase tracking-wider hover:bg-brand-limeHover transition-colors shadow-glow-lime-sm">
+            Save Schedule
+          </button>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          
+          <!-- Weekly Schedule Days (7 Cols) -->
+          <div class="lg:col-span-7 dashboard-card p-6 space-y-4">
+            <div class="pb-3 border-b border-white/10">
+              <h3 class="font-display font-bold text-base text-white uppercase tracking-tight">Weekly Consultation Days</h3>
+              <p class="text-xs text-brand-muted">Toggle weekdays and add/remove specific booking blocks.</p>
+            </div>
+            
+            <div id="availability-weekly-container" class="space-y-3">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+
+          <!-- Consultation Settings & Overrides (5 Cols) -->
+          <div class="lg:col-span-5 space-y-6">
+            
+            <!-- Global Consultation Constraints Form -->
+            <form id="trainer-availability-form" class="dashboard-card p-6 space-y-4">
+              <div class="pb-3 border-b border-white/10">
+                <h3 class="font-display font-bold text-base text-white uppercase tracking-tight">Call Constraints</h3>
+                <p class="text-xs text-brand-muted">Parameters used to calculate intake openings.</p>
+              </div>
+
+              <div>
+                <label for="avail-duration" class="block text-xs font-bold text-brand-muted uppercase mb-1">Call Duration (Minutes)</label>
+                <select id="avail-duration" class="w-full px-3 py-2 rounded-xl bg-brand-surface border border-brand-border text-xs text-white focus:border-brand-lime focus:outline-none">
+                  <option value="30">30 Minutes (Quick Assessment)</option>
+                  <option value="45" selected>45 Minutes (Full Biomechanical Audit)</option>
+                  <option value="60">60 Minutes (Elite Intake & Strategy)</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="avail-buffer" class="block text-xs font-bold text-brand-muted uppercase mb-1">Buffer Between Calls (Minutes)</label>
+                <select id="avail-buffer" class="w-full px-3 py-2 rounded-xl bg-brand-surface border border-brand-border text-xs text-white focus:border-brand-lime focus:outline-none">
+                  <option value="10">10 Minutes</option>
+                  <option value="15" selected>15 Minutes</option>
+                  <option value="30">30 Minutes</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="avail-max-per-day" class="block text-xs font-bold text-brand-muted uppercase mb-1">Max Consultations Per Day</label>
+                <input type="number" id="avail-max-per-day" min="1" max="12" value="6" class="w-full px-3 py-2 rounded-xl bg-brand-surface border border-brand-border text-xs text-white focus:border-brand-lime focus:outline-none">
+              </div>
+
+              <div>
+                <label for="avail-timezone" class="block text-xs font-bold text-brand-muted uppercase mb-1">Primary Timezone</label>
+                <select id="avail-timezone" class="w-full px-3 py-2 rounded-xl bg-brand-surface border border-brand-border text-xs text-white focus:border-brand-lime focus:outline-none">
+                  <option value="America/New_York (EST)">America/New York (EST, UTC-5)</option>
+                  <option value="America/Chicago (CST)">America/Chicago (CST, UTC-6)</option>
+                  <option value="America/Los_Angeles (PST)">America/Los Angeles (PST, UTC-8)</option>
+                  <option value="Europe/London (GMT)">Europe/London (GMT, UTC+0)</option>
+                </select>
+              </div>
+
+              <button type="submit" class="w-full py-2.5 rounded-full bg-brand-surface border border-brand-lime/30 text-brand-lime text-xs font-bold uppercase tracking-wider hover:bg-brand-lime/10 transition-colors">
+                Update Call Constraints
+              </button>
+            </form>
+
+            <!-- Specific Dates Override Card -->
+            <div class="dashboard-card p-6 space-y-4">
+              <div class="pb-3 border-b border-white/10">
+                <h3 class="font-display font-bold text-base text-white uppercase tracking-tight">Holiday & Date Overrides</h3>
+                <p class="text-xs text-brand-muted">Block out vacations or add special clinic dates.</p>
+              </div>
+
+              <div id="availability-overrides-container" class="space-y-2">
+                <!-- Rendered via JS -->
+              </div>
+
+              <!-- Add Override Form -->
+              <form id="add-override-form" class="pt-3 border-t border-white/5 space-y-2.5">
+                <div class="grid grid-cols-2 gap-2">
+                  <input type="date" id="override-date" required class="px-2.5 py-1.5 rounded-lg bg-brand-surface border border-brand-border text-xs text-white focus:border-brand-lime focus:outline-none">
+                  <select id="override-available" class="px-2.5 py-1.5 rounded-lg bg-brand-surface border border-brand-border text-xs text-white focus:border-brand-lime focus:outline-none">
+                    <option value="false">Unavailable</option>
+                    <option value="true">Special Available</option>
+                  </select>
+                </div>
+                <input type="text" id="override-reason" placeholder="Reason (e.g. Travel, Thanksgiving)" class="w-full px-2.5 py-1.5 rounded-lg bg-brand-surface border border-brand-border text-xs text-white focus:border-brand-lime focus:outline-none">
+                <button type="submit" class="w-full py-2 rounded-lg bg-brand-surface border border-white/10 hover:border-brand-lime/30 text-xs font-semibold text-white transition-colors">
+                  + Add Date Exception
+                </button>
+              </form>
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- ===================================================================
+           VIEW 6: SETTINGS
+           =================================================================== -->
+      <section id="view-settings" class="dashboard-view-panel hidden space-y-8">
+        
+        <div class="dashboard-card p-5 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div>
+            <h2 class="font-display font-black text-xl sm:text-2xl text-white uppercase tracking-tight">
+              Trainer Profile & Portal Settings
+            </h2>
+            <p class="text-xs text-brand-muted">Manage your coach identity, intake questionnaire defaults, and alerts.</p>
+          </div>
+        </div>
+
+        <form id="trainer-settings-form" class="space-y-8">
+          
+          <!-- Profile Card -->
+          <div class="dashboard-card p-6 sm:p-8 space-y-6">
+            <div class="pb-4 border-b border-white/10">
+              <h3 class="font-display font-bold text-lg text-white uppercase tracking-tight">Coach Profile Information</h3>
+              <p class="text-xs text-brand-muted">Information displayed on booking confirmations and client communications.</p>
+            </div>
+
+            <div class="flex flex-col sm:flex-row items-center gap-6">
+              <img src="../assets/images/coach-haisam.jpg" alt="Coach Haisam" class="w-20 h-20 rounded-full object-cover border-2 border-brand-lime/40 shrink-0">
+              <div>
+                <h4 class="font-bold text-white text-base">Coach Haisam</h4>
+                <p class="text-xs text-brand-lime font-mono">Head Biomechanics & Strength Coach</p>
+                <p class="text-[11px] text-brand-muted mt-1">Photo stored locally in assets/images/coach-haisam.jpg</p>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="settings-name" class="block text-xs font-bold text-brand-muted uppercase mb-1">Trainer Full Name</label>
+                <input type="text" id="settings-name" value="Coach Haisam" required class="w-full px-3.5 py-2.5 rounded-xl bg-brand-surface border border-brand-border text-xs text-white focus:border-brand-lime focus:outline-none">
+              </div>
+
+              <div>
+                <label for="settings-email" class="block text-xs font-bold text-brand-muted uppercase mb-1">Contact Email Address</label>
+                <input type="email" id="settings-email" value="coach.haisam@forgefitness.com" required class="w-full px-3.5 py-2.5 rounded-xl bg-brand-surface border border-brand-border text-xs text-white focus:border-brand-lime focus:outline-none">
+              </div>
+
+              <div>
+                <label for="settings-phone" class="block text-xs font-bold text-brand-muted uppercase mb-1">Phone Number</label>
+                <input type="tel" id="settings-phone" value="+1 (555) 839-2041" class="w-full px-3.5 py-2.5 rounded-xl bg-brand-surface border border-brand-border text-xs text-white focus:border-brand-lime focus:outline-none">
+              </div>
+
+              <div>
+                <label for="settings-business" class="block text-xs font-bold text-brand-muted uppercase mb-1">Business Name</label>
+                <input type="text" id="settings-business" value="FORGE FITNESS Elite Coaching" class="w-full px-3.5 py-2.5 rounded-xl bg-brand-surface border border-brand-border text-xs text-white focus:border-brand-lime focus:outline-none">
+              </div>
+            </div>
+
+            <div>
+              <label for="settings-bio" class="block text-xs font-bold text-brand-muted uppercase mb-1">Professional Bio & Coaching Philosophy</label>
+              <textarea id="settings-bio" rows="3" class="w-full px-3.5 py-2.5 rounded-xl bg-brand-surface border border-brand-border text-xs text-white focus:border-brand-lime focus:outline-none leading-relaxed"></textarea>
+            </div>
+          </div>
+
+          <!-- Notification Preferences Card -->
+          <div class="dashboard-card p-6 sm:p-8 space-y-6">
+            <div class="pb-4 border-b border-white/10">
+              <h3 class="font-display font-bold text-lg text-white uppercase tracking-tight">Notification Alerts</h3>
+              <p class="text-xs text-brand-muted">Control when you receive alerts regarding client appointments.</p>
+            </div>
+
+            <div class="space-y-4">
+              <label class="flex items-center justify-between p-3.5 rounded-xl bg-brand-surface border border-white/5 cursor-pointer">
+                <div>
+                  <div class="text-xs font-bold text-white">New Booking Request Alerts</div>
+                  <div class="text-[11px] text-brand-muted">Receive notification as soon as an athlete submits the intake form.</div>
+                </div>
+                <input type="checkbox" id="notif-toggle-new" checked class="rounded bg-brand-black border-brand-border text-brand-lime focus:ring-brand-lime h-4 w-4">
+              </label>
+
+              <label class="flex items-center justify-between p-3.5 rounded-xl bg-brand-surface border border-white/5 cursor-pointer">
+                <div>
+                  <div class="text-xs font-bold text-white">Booking Confirmation Reminders</div>
+                  <div class="text-[11px] text-brand-muted">Calendar event invite sent automatically upon acceptance.</div>
+                </div>
+                <input type="checkbox" id="notif-toggle-confirm" checked class="rounded bg-brand-black border-brand-border text-brand-lime focus:ring-brand-lime h-4 w-4">
+              </label>
+
+              <label class="flex items-center justify-between p-3.5 rounded-xl bg-brand-surface border border-white/5 cursor-pointer">
+                <div>
+                  <div class="text-xs font-bold text-white">Cancellation & Reschedule Notices</div>
+                  <div class="text-[11px] text-brand-muted">Immediate notification if an athlete requests a time change.</div>
+                </div>
+                <input type="checkbox" id="notif-toggle-cancel" checked class="rounded bg-brand-black border-brand-border text-brand-lime focus:ring-brand-lime h-4 w-4">
+              </label>
+
+              <label class="flex items-center justify-between p-3.5 rounded-xl bg-brand-surface border border-white/5 cursor-pointer">
+                <div>
+                  <div class="text-xs font-bold text-white">Weekly Pipeline Digest</div>
+                  <div class="text-[11px] text-brand-muted">Summary of upcoming consultations and converted athletes.</div>
+                </div>
+                <input type="checkbox" id="notif-toggle-weekly" checked class="rounded bg-brand-black border-brand-border text-brand-lime focus:ring-brand-lime h-4 w-4">
+              </label>
+            </div>
+          </div>
+
+          <!-- Account Security Info -->
+          <div class="dashboard-card p-6 sm:p-8 space-y-4">
+            <div class="pb-3 border-b border-white/10">
+              <h3 class="font-display font-bold text-lg text-white uppercase tracking-tight">Authentication & Supabase Readiness</h3>
+              <p class="text-xs text-brand-muted">Phase 1 Demo Authentication Status.</p>
+            </div>
+            <div class="p-4 rounded-xl bg-brand-surface border border-brand-lime/20 text-xs space-y-1.5">
+              <div class="font-bold text-brand-lime font-mono">SUPABASE AUTH PRE-CONFIGURED</div>
+              <p class="text-brand-muted leading-relaxed">
+                This dashboard frontend is decoupled from hardcoded logic and stores session tokens in localStorage. In Phase 2, this will be wired to your Supabase Project URL and Row-Level Security (RLS) tables without altering this UI.
+              </p>
+            </div>
+          </div>
+
+          <!-- Save Button -->
+          <div class="flex justify-end">
+            <button type="submit" class="px-8 py-3.5 rounded-full bg-brand-lime text-brand-black font-extrabold text-xs uppercase tracking-wider hover:bg-brand-limeHover transition-colors shadow-glow-lime-sm">
+              Save Settings Changes
+            </button>
+          </div>
+
+        </form>
+
+      </section>
+
+    </main>
+
+  </div>
+
+  <!-- =========================================================================
+       MODALS
+       ========================================================================= -->
+
+  <!-- Booking Details Modal -->
+  <div id="booking-details-modal" class="portal-modal-backdrop" aria-hidden="true" role="dialog">
+    <div class="portal-modal-box p-6 sm:p-7">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="font-display font-bold text-lg text-white uppercase tracking-tight">Client Consultation Intake</h3>
+        <button type="button" data-modal-close class="text-brand-muted hover:text-white p-1 rounded-lg">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" stroke-width="2" stroke-linecap="round"></path></svg>
+        </button>
+      </div>
+      <div id="booking-details-content">
+        <!-- Rendered via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Lead Details Modal -->
+  <div id="lead-details-modal" class="portal-modal-backdrop" aria-hidden="true" role="dialog">
+    <div class="portal-modal-box p-6 sm:p-7">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="font-display font-bold text-lg text-white uppercase tracking-tight">Athlete Lead Details</h3>
+        <button type="button" data-modal-close class="text-brand-muted hover:text-white p-1 rounded-lg">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" stroke-width="2" stroke-linecap="round"></path></svg>
+        </button>
+      </div>
+      <div id="lead-details-content">
+        <!-- Rendered via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Reschedule Modal -->
+  <div id="reschedule-modal" class="portal-modal-backdrop" aria-hidden="true" role="dialog">
+    <div class="portal-modal-box p-6 sm:p-7">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="font-display font-bold text-lg text-white uppercase tracking-tight">Reschedule Consultation</h3>
+        <button type="button" data-modal-close class="text-brand-muted hover:text-white p-1 rounded-lg">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" stroke-width="2" stroke-linecap="round"></path></svg>
+        </button>
+      </div>
+      <p class="text-xs text-brand-muted mb-4">
+        Select a new date and time slot for <strong id="reschedule-client-name" class="text-white">Athlete</strong>.
+      </p>
+      <div class="space-y-4">
+        <div>
+          <label for="reschedule-date-input" class="block text-xs font-bold text-brand-muted uppercase mb-1">New Consultation Date</label>
+          <input type="date" id="reschedule-date-input" class="w-full px-3 py-2 rounded-xl bg-brand-surface border border-brand-border text-xs text-white focus:border-brand-lime focus:outline-none">
+        </div>
+        <div>
+          <label for="reschedule-time-select" class="block text-xs font-bold text-brand-muted uppercase mb-1">Available Time Slot</label>
+          <select id="reschedule-time-select" class="w-full px-3 py-2 rounded-xl bg-brand-surface border border-brand-border text-xs text-white focus:border-brand-lime focus:outline-none">
+            <option value="09:00 AM">09:00 AM EST</option>
+            <option value="10:00 AM">10:00 AM EST</option>
+            <option value="11:15 AM">11:15 AM EST</option>
+            <option value="01:00 PM">01:00 PM EST</option>
+            <option value="02:30 PM">02:30 PM EST</option>
+            <option value="04:00 PM">04:00 PM EST</option>
+            <option value="05:30 PM">05:30 PM EST</option>
+          </select>
+        </div>
+        <div class="pt-3 flex justify-end gap-2">
+          <button type="button" data-modal-close class="px-4 py-2 rounded-full bg-brand-surface border border-white/10 text-white text-xs font-semibold">
+            Cancel
+          </button>
+          <button type="button" onclick="window.submitRescheduleAction()" class="px-5 py-2 rounded-full bg-brand-lime text-brand-black font-extrabold text-xs uppercase tracking-wider hover:bg-brand-limeHover shadow-glow-lime-sm">
+            Save Reschedule
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reject Confirmation Modal -->
+  <div id="reject-confirm-modal" class="portal-modal-backdrop" aria-hidden="true" role="dialog">
+    <div class="portal-modal-box p-6 sm:p-7">
+      <div class="flex items-center gap-3 text-red-400 mb-3">
+        <svg class="w-6 h-6 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" stroke-width="2"></path></svg>
+        <h3 class="font-display font-bold text-lg text-white uppercase tracking-tight">Decline Consultation Request</h3>
+      </div>
+      <p class="text-xs text-brand-muted leading-relaxed mb-5">
+        Are you sure you want to decline this booking request? The status will update to <strong class="text-red-400">Rejected</strong> and an automatic notification will be recorded in the system.
+      </p>
+      <div class="flex justify-end gap-2">
+        <button type="button" data-modal-close class="px-4 py-2 rounded-full bg-brand-surface border border-white/10 text-white text-xs font-semibold">
+          Keep Request
+        </button>
+        <button type="button" onclick="window.confirmRejectAction()" class="px-5 py-2 rounded-full bg-red-600 text-white font-extrabold text-xs uppercase tracking-wider hover:bg-red-500 transition-colors">
+          Yes, Decline Request
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cancel Consultation Confirmation Modal -->
+  <div id="cancel-consultation-modal" class="portal-modal-backdrop" aria-hidden="true" role="dialog">
+    <div class="portal-modal-box p-6 sm:p-7">
+      <div class="flex items-center gap-3 text-red-400 mb-3">
+        <svg class="w-6 h-6 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" stroke-width="2"></path></svg>
+        <h3 class="font-display font-bold text-lg text-white uppercase tracking-tight">Cancel Confirmed Call</h3>
+      </div>
+      <p class="text-xs text-brand-muted leading-relaxed mb-5">
+        Are you sure you want to cancel this scheduled consultation? The appointment slot will be released back to your available calendar.
+      </p>
+      <div class="flex justify-end gap-2">
+        <button type="button" data-modal-close class="px-4 py-2 rounded-full bg-brand-surface border border-white/10 text-white text-xs font-semibold">
+          Keep Call
+        </button>
+        <button type="button" onclick="window.confirmCancelConsultationAction()" class="px-5 py-2 rounded-full bg-red-600 text-white font-extrabold text-xs uppercase tracking-wider hover:bg-red-500 transition-colors">
+          Cancel Consultation
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Time Block Modal -->
+  <div id="add-timeblock-modal" class="portal-modal-backdrop" aria-hidden="true" role="dialog">
+    <div class="portal-modal-box p-6 sm:p-7">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="font-display font-bold text-lg text-white uppercase tracking-tight">Add Working Hours Block</h3>
+        <button type="button" data-modal-close class="text-brand-muted hover:text-white p-1 rounded-lg">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" stroke-width="2" stroke-linecap="round"></path></svg>
+        </button>
+      </div>
+      <p class="text-xs text-brand-muted mb-4">
+        Specify working hours for <strong id="timeblock-day-name" class="text-brand-lime">Day</strong>.
+      </p>
+      <form id="add-timeblock-form" class="space-y-4">
+        <input type="hidden" id="timeblock-day-key" value="">
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label for="timeblock-start" class="block text-xs font-bold text-brand-muted uppercase mb-1">Start Time</label>
+            <input type="time" id="timeblock-start" value="09:00" required class="w-full px-3 py-2 rounded-xl bg-brand-surface border border-brand-border text-xs text-white focus:border-brand-lime focus:outline-none">
+          </div>
+          <div>
+            <label for="timeblock-end" class="block text-xs font-bold text-brand-muted uppercase mb-1">End Time</label>
+            <input type="time" id="timeblock-end" value="13:00" required class="w-full px-3 py-2 rounded-xl bg-brand-surface border border-brand-border text-xs text-white focus:border-brand-lime focus:outline-none">
+          </div>
+        </div>
+        <div class="pt-2 flex justify-end gap-2">
+          <button type="button" data-modal-close class="px-4 py-2 rounded-full bg-brand-surface border border-white/10 text-white text-xs font-semibold">
+            Cancel
+          </button>
+          <button type="submit" class="px-5 py-2 rounded-full bg-brand-lime text-brand-black font-extrabold text-xs uppercase tracking-wider hover:bg-brand-limeHover shadow-glow-lime-sm">
+            Add Block
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Add Lead Modal -->
+  <div id="add-lead-modal" class="portal-modal-backdrop" aria-hidden="true" role="dialog">
+    <div class="portal-modal-box p-6 sm:p-7 max-w-md">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="font-display font-bold text-lg text-white uppercase tracking-tight">Add Athlete Lead</h3>
+        <button type="button" data-modal-close class="text-brand-muted hover:text-white p-1 rounded-lg">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" stroke-width="2" stroke-linecap="round"></path></svg>
+        </button>
+      </div>
+      <form id="add-lead-form" class="space-y-4 text-xs">
+        <div>
+          <label for="add-lead-name" class="block font-bold text-brand-muted uppercase mb-1">Full Name *</label>
+          <input type="text" id="add-lead-name" required placeholder="e.g. Jordan Hayes" class="w-full px-3 py-2 rounded-xl bg-brand-surface border border-brand-border text-xs text-white focus:border-brand-lime focus:outline-none">
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label for="add-lead-email" class="block font-bold text-brand-muted uppercase mb-1">Email *</label>
+            <input type="email" id="add-lead-email" required placeholder="jordan@domain.com" class="w-full px-3 py-2 rounded-xl bg-brand-surface border border-brand-border text-xs text-white focus:border-brand-lime focus:outline-none">
+          </div>
+          <div>
+            <label for="add-lead-phone" class="block font-bold text-brand-muted uppercase mb-1">Phone *</label>
+            <input type="tel" id="add-lead-phone" required placeholder="+1 (555) 000-0000" class="w-full px-3 py-2 rounded-xl bg-brand-surface border border-brand-border text-xs text-white focus:border-brand-lime focus:outline-none">
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label for="add-lead-goal" class="block font-bold text-brand-muted uppercase mb-1">Primary Goal</label>
+            <select id="add-lead-goal" class="w-full px-3 py-2 rounded-xl bg-brand-surface border border-brand-border text-xs text-white focus:border-brand-lime focus:outline-none">
+              <option value="Hypertrophy & Muscle Gain">Hypertrophy & Muscle Gain</option>
+              <option value="Fat Loss & Conditioning">Fat Loss & Conditioning</option>
+              <option value="Biomechanical Rebuild">Biomechanical Rebuild</option>
+              <option value="Strength & Athleticism">Strength & Athleticism</option>
+              <option value="Elite Athlete Prep">Elite Athlete Prep</option>
+            </select>
+          </div>
+          <div>
+            <label for="add-lead-exp" class="block font-bold text-brand-muted uppercase mb-1">Experience</label>
+            <select id="add-lead-exp" class="w-full px-3 py-2 rounded-xl bg-brand-surface border border-brand-border text-xs text-white focus:border-brand-lime focus:outline-none">
+              <option value="Beginner (< 1 year)">Beginner (&lt; 1 year)</option>
+              <option value="Intermediate (1–3 years)">Intermediate (1–3 years)</option>
+              <option value="Advanced (3+ years)">Advanced (3+ years)</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <label for="add-lead-notes" class="block font-bold text-brand-muted uppercase mb-1">Coach Notes</label>
+          <textarea id="add-lead-notes" rows="2" placeholder="Biomechanical background, direct inquiries, or referral notes..." class="w-full px-3 py-2 rounded-xl bg-brand-surface border border-brand-border text-xs text-white focus:border-brand-lime focus:outline-none"></textarea>
+        </div>
+        <div class="pt-2 flex justify-end gap-2">
+          <button type="button" data-modal-close class="px-4 py-2 rounded-full bg-brand-surface border border-white/10 text-white text-xs font-semibold">
+            Cancel
+          </button>
+          <button type="submit" class="px-5 py-2 rounded-full bg-brand-lime text-brand-black font-extrabold text-xs uppercase tracking-wider hover:bg-brand-limeHover shadow-glow-lime-sm">
+            Save Athlete Lead
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notifications Container -->
+  <div id="toast-container" aria-live="polite"></div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../assets/js/supabase-config.js?v=2.0"></script>
+  <script src="../assets/js/trainer-data.js?v=2.0"></script>
+  <script src="../assets/js/trainer-auth.js?v=2.0"></script>
+  <script src="../assets/js/trainer-dashboard.js?v=2.0"></script>
+</body>
+</html>

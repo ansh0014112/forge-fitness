@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Trainer Portal Login — FORGE FITNESS</title>
+  <meta name="description" content="Private portal login for FORGE FITNESS head coach and personal trainer.">
+  <meta name="theme-color" content="#090B0A">
+  <meta name="robots" content="noindex, nofollow">
+
+  <!-- Google Fonts: Syne (Display) & Plus Jakarta Sans (Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS (Local Bundle) -->
+  <script src="../assets/js/tailwind.min.js"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              black: "#090B0A",
+              graphite: "#141714",
+              surface: "#1A1E1A",
+              border: "#272E27",
+              lime: "#B8FF38",
+              limeHover: "#a3ea2c",
+              softWhite: "#F5F6F2",
+              muted: "#A4AAA0"
+            }
+          },
+          fontFamily: {
+            display: ["Syne", "sans-serif"],
+            sans: ["'Plus Jakarta Sans'", "sans-serif"]
+          },
+          boxShadow: {
+            "glow-lime": "0 0 35px -5px rgba(184, 255, 56, 0.45)",
+            "glow-lime-sm": "0 0 18px -2px rgba(184, 255, 56, 0.3)"
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="../assets/images/logo.png">
+
+  <!-- Project Stylesheets -->
+  <link rel="stylesheet" href="../assets/css/main.css?v=2.0">
+  <link rel="stylesheet" href="../assets/css/trainer.css?v=2.0">
+</head>
+<body class="bg-brand-black text-brand-softWhite min-h-screen flex flex-col justify-between selection:bg-brand-lime selection:text-brand-black antialiased relative overflow-x-hidden">
+
+  <!-- Background Ambience -->
+  <div class="fixed inset-0 pointer-events-none z-0" aria-hidden="true">
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-brand-lime/5 rounded-full blur-[140px]"></div>
+    <div class="absolute bottom-10 right-10 w-[300px] h-[300px] bg-brand-lime/3 rounded-full blur-[100px]"></div>
+  </div>
+
+  <!-- Top Simple Navigation Bar -->
+  <header class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex items-center justify-between">
+    <a href="../index.html" class="flex items-center gap-3 group" aria-label="Return to Public Homepage">
+      <img src="../assets/images/logo.png" alt="FORGE FITNESS Logo" class="h-8 w-auto object-contain transition-transform duration-300 group-hover:scale-105 filter drop-shadow-[0_0_12px_rgba(184,255,56,0.35)]" width="200" height="28">
+    </a>
+    <a href="../index.html" class="inline-flex items-center gap-2 text-xs font-semibold text-brand-muted hover:text-brand-lime uppercase tracking-wider transition-colors px-3 py-1.5 rounded-full border border-white/10 hover:border-brand-lime/30">
+      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M10 19l-7-7m0 0l7-7m-7 7h18" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+      </svg>
+      <span>Public Website</span>
+    </a>
+  </header>
+
+  <!-- Main Login Container -->
+  <main class="relative z-10 flex-grow flex items-center justify-center px-4 py-8">
+    <div class="w-full max-w-md">
+
+      <!-- Login Card -->
+      <div class="dashboard-card p-6 sm:p-8 backdrop-blur-xl border border-white/10 shadow-2xl relative">
+        
+        <!-- Header -->
+        <div class="text-center mb-7">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-surface border border-brand-lime/20 text-brand-lime text-[11px] font-bold tracking-widest uppercase mb-3">
+            <span class="w-2 h-2 rounded-full bg-brand-lime animate-pulse" aria-hidden="true"></span>
+            <span>Private Trainer Portal</span>
+          </div>
+          <h1 class="font-display font-black text-2xl sm:text-3xl text-white tracking-tight uppercase">
+            Coach Sign In
+          </h1>
+          <p class="text-brand-muted text-xs sm:text-sm mt-1.5 leading-relaxed">
+            Manage your consultation bookings, athlete leads, and coaching schedule.
+          </p>
+        </div>
+
+        <!-- Alert Banner (Hidden by default) -->
+        <div id="login-error" class="hidden mb-5 p-3.5 rounded-xl bg-red-950/50 border border-red-500/40 text-red-300 text-xs flex items-start gap-2.5" role="alert">
+          <svg class="w-4 h-4 text-red-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+          </svg>
+          <span id="login-error-text">Invalid trainer credentials.</span>
+        </div>
+
+        <!-- Login Form -->
+        <form id="trainer-login-form" class="space-y-4" novalidate>
+          
+          <!-- Email Input -->
+          <div>
+            <label for="trainer-email" class="block text-xs font-bold uppercase tracking-wider text-brand-muted mb-1.5">
+              Trainer Email Address
+            </label>
+            <div class="relative">
+              <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-brand-muted">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                </svg>
+              </div>
+              <input 
+                type="email" 
+                id="trainer-email" 
+                name="email" 
+                required 
+                autocomplete="email"
+                placeholder="coach.haisam@forgefitness.com"
+                value="coach.haisam@forgefitness.com"
+                class="w-full pl-10 pr-4 py-3 rounded-xl bg-brand-surface border border-brand-border text-brand-softWhite text-sm focus:border-brand-lime focus:outline-none focus:ring-1 focus:ring-brand-lime transition-colors">
+            </div>
+          </div>
+
+          <!-- Password Input -->
+          <div>
+            <div class="flex items-center justify-between mb-1.5">
+              <label for="trainer-password" class="block text-xs font-bold uppercase tracking-wider text-brand-muted">
+                Password
+              </label>
+              <button type="button" id="forgot-password-trigger" class="text-xs text-brand-lime hover:underline transition-all">
+                Forgot Password?
+              </button>
+            </div>
+            <div class="relative">
+              <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-brand-muted">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                </svg>
+              </div>
+              <input 
+                type="password" 
+                id="trainer-password" 
+                name="password" 
+                required 
+                autocomplete="current-password"
+                placeholder="••••••••••••"
+                value="forge2026"
+                class="w-full pl-10 pr-11 py-3 rounded-xl bg-brand-surface border border-brand-border text-brand-softWhite text-sm focus:border-brand-lime focus:outline-none focus:ring-1 focus:ring-brand-lime transition-colors">
+              <button 
+                type="button" 
+                id="toggle-password-btn" 
+                class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-brand-muted hover:text-brand-lime transition-colors"
+                aria-label="Toggle password visibility">
+                <!-- Eye Icon (Hide) -->
+                <svg id="eye-icon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                  <path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Remember Me Checkbox -->
+          <div class="flex items-center justify-between pt-1">
+            <label class="flex items-center gap-2 cursor-pointer select-none">
+              <input type="checkbox" id="remember-me" checked class="rounded bg-brand-surface border-brand-border text-brand-lime focus:ring-brand-lime h-4 w-4">
+              <span class="text-xs text-brand-muted">Remember this device</span>
+            </label>
+            <span class="text-[11px] text-brand-lime/80 font-mono">EST. 2018</span>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="pt-2">
+            <button 
+              type="submit" 
+              id="login-submit-btn" 
+              class="w-full py-3.5 px-6 rounded-full bg-brand-lime text-brand-black font-extrabold text-sm uppercase tracking-wider flex items-center justify-center gap-2 shadow-glow-lime-sm hover:bg-brand-limeHover transition-all transform hover:-translate-y-0.5 active:translate-y-0">
+              <span id="btn-text">Sign In to Dashboard</span>
+              <svg id="btn-spinner" class="hidden animate-spin w-4 h-4 text-brand-black" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+            </button>
+          </div>
+        </form>
+
+        <!-- Demo Mode Helper Card -->
+        <div class="mt-6 pt-5 border-t border-white/10 text-center">
+          <div class="p-3 rounded-xl bg-brand-surface/70 border border-brand-lime/20 text-left mb-3">
+            <div class="flex items-center justify-between text-[11px] font-bold text-brand-lime uppercase tracking-wider mb-1">
+              <span>Phase 1 Frontend Demo</span>
+              <span class="bg-brand-lime/20 px-2 py-0.5 rounded text-[10px]">Mock Auth</span>
+            </div>
+            <p class="text-[11px] text-brand-muted leading-relaxed">
+              Default credentials prefilled. Prepared for direct Supabase Auth integration in Phase 2.
+            </p>
+          </div>
+          <button 
+            type="button" 
+            id="quick-demo-fill-btn" 
+            class="text-xs text-brand-muted hover:text-brand-lime underline decoration-dotted transition-colors">
+            Reset to default demo account
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Forgot Password Demo Modal -->
+  <div id="forgot-modal" class="portal-modal-backdrop" aria-hidden="true" role="dialog">
+    <div class="portal-modal-box p-6 sm:p-7">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="font-display font-bold text-lg text-white uppercase tracking-tight">Trainer Password Reset</h3>
+        <button type="button" id="forgot-modal-close" class="text-brand-muted hover:text-white p-1 rounded-lg">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" stroke-width="2" stroke-linecap="round"></path></svg>
+        </button>
+      </div>
+      <p class="text-xs text-brand-muted leading-relaxed mb-4">
+        In this <strong class="text-brand-softWhite">Phase 1 Frontend Demonstration</strong>, real email password recovery is not yet connected to a live email service. Use the demo credentials provided on the login card:
+      </p>
+      <div class="p-3.5 rounded-xl bg-brand-surface border border-white/10 font-mono text-xs text-brand-lime mb-5 space-y-1">
+        <div>Email: <strong>coach.haisam@forgefitness.com</strong></div>
+        <div>Password: <strong>forge2026</strong></div>
+      </div>
+      <button type="button" id="forgot-modal-confirm" class="w-full py-2.5 rounded-full bg-brand-lime text-brand-black font-extrabold text-xs uppercase tracking-wider">
+        Understood, Return to Login
+      </button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="relative z-10 py-6 text-center text-xs text-brand-muted/60 border-t border-white/5">
+    <p>© <span id="year">2026</span> FORGE FITNESS. Authorized Trainer Administration Access Only.</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../assets/js/supabase-config.js?v=2.0"></script>
+  <script src="../assets/js/trainer-data.js?v=2.0"></script>
+  <script src="../assets/js/trainer-auth.js?v=2.0"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Current year
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      // Check for logged_out feedback banner
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('logged_out') === 'true') {
+        const infoBanner = document.createElement('div');
+        infoBanner.className = 'mb-5 p-3.5 rounded-xl bg-brand-surface border border-brand-lime/30 text-brand-lime text-xs flex items-center gap-2.5';
+        infoBanner.innerHTML = `
+          <svg class="w-4 h-4 text-brand-lime shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+          <span>You have been signed out successfully. Session terminated.</span>
+        `;
+        const formHeader = document.querySelector('.dashboard-card .text-center');
+        if (formHeader) formHeader.insertAdjacentElement('afterend', infoBanner);
+      } else {
+        // If already logged in, redirect to dashboard
+        window.TrainerAuth.redirectIfAuthenticated();
+      }
+
+      const form = document.getElementById('trainer-login-form');
+      const emailInput = document.getElementById('trainer-email');
+      const passInput = document.getElementById('trainer-password');
+      const rememberCheckbox = document.getElementById('remember-me');
+      const submitBtn = document.getElementById('login-submit-btn');
+      const btnText = document.getElementById('btn-text');
+      const btnSpinner = document.getElementById('btn-spinner');
+      const errorBanner = document.getElementById('login-error');
+      const errorText = document.getElementById('login-error-text');
+      const togglePassBtn = document.getElementById('toggle-password-btn');
+
+      // Toggle Password Visibility
+      togglePassBtn.addEventListener('click', () => {
+        const isPass = passInput.type === 'password';
+        passInput.type = isPass ? 'text' : 'password';
+        togglePassBtn.classList.toggle('text-brand-lime', isPass);
+      });
+
+      // Quick Demo Fill
+      document.getElementById('quick-demo-fill-btn').addEventListener('click', () => {
+        emailInput.value = 'coach.haisam@forgefitness.com';
+        passInput.value = 'forge2026';
+        errorBanner.classList.add('hidden');
+      });
+
+      // Forgot Password Modal
+      const forgotModal = document.getElementById('forgot-modal');
+      const forgotTrigger = document.getElementById('forgot-password-trigger');
+      const forgotClose = document.getElementById('forgot-modal-close');
+      const forgotConfirm = document.getElementById('forgot-modal-confirm');
+
+      forgotTrigger.addEventListener('click', () => {
+        forgotModal.classList.add('active');
+        forgotModal.setAttribute('aria-hidden', 'false');
+      });
+      [forgotClose, forgotConfirm].forEach(btn => {
+        btn.addEventListener('click', () => {
+          forgotModal.classList.remove('active');
+          forgotModal.setAttribute('aria-hidden', 'true');
+        });
+      });
+
+      // Handle Form Submit
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        errorBanner.classList.add('hidden');
+
+        const email = emailInput.value.trim();
+        const pass = passInput.value.trim();
+
+        if (!email || !pass) {
+          errorText.textContent = 'Please provide both your trainer email and password.';
+          errorBanner.classList.remove('hidden');
+          return;
+        }
+
+        // Set loading state
+        submitBtn.disabled = true;
+        btnText.textContent = 'Authenticating...';
+        btnSpinner.classList.remove('hidden');
+
+        try {
+          await window.TrainerAuth.login(email, pass, rememberCheckbox.checked);
+          btnText.textContent = 'Authorized! Loading Dashboard...';
+          
+          // Check for redirect query param
+          const params = new URLSearchParams(window.location.search);
+          const redirectUrl = params.get('redirect') || 'dashboard.html';
+          
+          setTimeout(() => {
+            window.location.href = redirectUrl;
+          }, 350);
+        } catch (err) {
+          submitBtn.disabled = false;
+          btnText.textContent = 'Sign In to Dashboard';
+          btnSpinner.classList.add('hidden');
+          errorText.textContent = err.message || 'Login failed. Please verify credentials.';
+          errorBanner.classList.remove('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

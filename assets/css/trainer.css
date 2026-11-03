@@ -1,0 +1,273 @@
+/* ==========================================================================
+   FORGE FITNESS — Trainer Portal & Dashboard Stylesheet
+   Matches existing FORGE FITNESS design system (Dark, Graphite, Electric Lime)
+   ========================================================================== */
+
+:root {
+  --sidebar-width: 260px;
+  --topbar-height: 72px;
+}
+
+/* Glassmorphism & Panel Surfaces */
+.dashboard-card {
+  background: linear-gradient(145deg, rgba(26, 30, 26, 0.7) 0%, rgba(20, 23, 20, 0.9) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1rem;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.dashboard-card:hover {
+  border-color: rgba(184, 255, 56, 0.25);
+}
+
+.dashboard-card-glow {
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.7), 0 0 20px -5px rgba(184, 255, 56, 0.1);
+}
+
+/* Sidebar Navigation Items */
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-muted, #A4AAA0);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+.sidebar-link:hover {
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.sidebar-link.active {
+  color: #090B0A !important;
+  background-color: var(--color-lime, #B8FF38) !important;
+  font-weight: 700;
+  box-shadow: 0 0 20px rgba(184, 255, 56, 0.35);
+}
+
+.sidebar-link.active svg {
+  color: #090B0A !important;
+  stroke: #090B0A !important;
+}
+
+/* Status Badges */
+.badge-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 9999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.badge-pending {
+  background: rgba(234, 179, 8, 0.15);
+  color: #facc15;
+  border: 1px solid rgba(234, 179, 8, 0.3);
+}
+
+.badge-confirmed {
+  background: rgba(184, 255, 56, 0.15);
+  color: #B8FF38;
+  border: 1px solid rgba(184, 255, 56, 0.35);
+}
+
+.badge-rejected {
+  background: rgba(239, 68, 68, 0.15);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.badge-cancelled {
+  background: rgba(148, 163, 184, 0.12);
+  color: #94a3b8;
+  border: 1px solid rgba(148, 163, 184, 0.25);
+}
+
+.badge-new {
+  background: rgba(56, 189, 248, 0.15);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
+.badge-contacted {
+  background: rgba(168, 85, 247, 0.15);
+  color: #c084fc;
+  border: 1px solid rgba(168, 85, 247, 0.3);
+}
+
+.badge-interested {
+  background: rgba(249, 115, 22, 0.15);
+  color: #fb923c;
+  border: 1px solid rgba(249, 115, 22, 0.3);
+}
+
+.badge-converted {
+  background: rgba(34, 197, 94, 0.15);
+  color: #4ade80;
+  border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+/* Custom Table Responsive Wrapper */
+.table-container {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table-container::-webkit-scrollbar {
+  height: 6px;
+}
+.table-container::-webkit-scrollbar-thumb {
+  background: #272E27;
+  border-radius: 3px;
+}
+
+/* Interactive Tabs */
+.tab-btn {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #A4AAA0;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.tab-btn:hover {
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.tab-btn.active {
+  background-color: rgba(184, 255, 56, 0.12);
+  color: #B8FF38;
+  border: 1px solid rgba(184, 255, 56, 0.3);
+}
+
+/* Toast Notifications */
+#toast-container {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  pointer-events: none;
+  max-width: 90vw;
+  width: 380px;
+}
+
+.toast {
+  pointer-events: auto;
+  background: #141714;
+  border: 1px solid rgba(184, 255, 56, 0.3);
+  border-radius: 0.75rem;
+  padding: 0.875rem 1.125rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7), 0 0 15px rgba(184, 255, 56, 0.15);
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  color: #F5F6F2;
+  font-size: 0.875rem;
+  animation: toastSlideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes toastSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.toast-success {
+  border-left: 4px solid #B8FF38;
+}
+
+.toast-error {
+  border-left: 4px solid #f87171;
+  border-color: rgba(239, 68, 68, 0.4);
+}
+
+.toast-info {
+  border-left: 4px solid #38bdf8;
+  border-color: rgba(56, 189, 248, 0.4);
+}
+
+/* Notification Dropdown Panel */
+.notification-dropdown {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  width: 360px;
+  max-width: calc(100vw - 2rem);
+  background: #141714;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 1rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  z-index: 60;
+  display: none;
+}
+
+.notification-dropdown.open {
+  display: block;
+  animation: dropdownFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes dropdownFadeIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Modals */
+.portal-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.portal-modal-backdrop.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.portal-modal-box {
+  background: #141714;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 1.25rem;
+  width: 100%;
+  max-width: 580px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.9), 0 0 30px rgba(184, 255, 56, 0.1);
+  transform: translateY(15px) scale(0.98);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.portal-modal-backdrop.active .portal-modal-box {
+  transform: translateY(0) scale(1);
+}

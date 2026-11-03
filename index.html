@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>FORGE FITNESS — Elite 1-on-1 Online Strength &amp; Physique Coaching</title>
+  <meta name="description" content="Elite 1-on-1 online strength and physique coaching. Biomechanical precision, custom nutrition periodization, and bespoke training frameworks for high-achieving individuals.">
+  <meta name="keywords" content="fitness coaching, personal trainer, strength training, hypertrophy, body recomposition, online coach">
+  <meta name="theme-color" content="#090B0A">
+
+  <!-- Open Graph / Meta -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="FORGE FITNESS — Elite 1-on-1 Online Coaching">
+  <meta property="og:description" content="Scientific strength engineering, customized nutrition protocols, and relentless accountability.">
+  <meta property="og:image" content="assets/images/hero-athlete.png">
+
+  <!-- Google Fonts: Syne (Display) & Plus Jakarta Sans (Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Syne:wght@700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS (Local Bundle for 100% offline reliability) -->
+  <script src="assets/js/tailwind.min.js"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              black: "#090B0A",
+              graphite: "#141714",
+              surface: "#1A1E1A",
+              border: "#272E27",
+              lime: "#B8FF38",
+              limeHover: "#a3ea2c",
+              softWhite: "#F5F6F2",
+              muted: "#A4AAA0"
+            }
+          },
+          fontFamily: {
+            display: ["Syne", "sans-serif"],
+            sans: ["'Plus Jakarta Sans'", "sans-serif"]
+          },
+          boxShadow: {
+            "glow-lime": "0 0 35px -5px rgba(184, 255, 56, 0.45)",
+            "glow-lime-sm": "0 0 18px -2px rgba(184, 255, 56, 0.3)",
+            "glow-lime-intense": "0 0 45px rgba(184, 255, 56, 0.55)"
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/images/logo.png">
+
+  <!-- Project Stylesheet -->
+  <link rel="stylesheet" href="assets/css/main.css?v=2.0">
+</head>
+<body class="bg-brand-black text-brand-softWhite antialiased selection:bg-brand-lime selection:text-brand-black relative">
+
+  <!-- Ambient Mouse Follower Glow (Disabled on touch & reduced motion) -->
+  <div aria-hidden="true" id="cursor-ambient-glow"></div>
+
+  <!-- ========================================================================
+       BEGIN: Sticky Navigation Bar
+       ======================================================================== -->
+  <header class="fixed top-0 left-0 right-0 z-50 glass-nav border-b border-white/10" id="main-header">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a aria-label="FORGE FITNESS Homepage" class="flex items-center gap-3 group" href="#hero">
+        <img alt="FORGE FITNESS Logo" class="h-8 sm:h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105 filter drop-shadow-[0_0_12px_rgba(184,255,56,0.35)]" 
+             src="assets/images/logo.png" 
+             onerror="this.src='https://lh3.googleusercontent.com/aida/AEtjO1Udp5ODC8XCzB0NuX7NJhVmBUsnjJYaZKN189vZJKf4dMgIE2GypRVVFC5X3wXPcCz4-xrwnVmeI6JNFDO9JVaa3cezmu2FIAsE4qVl1Tk4PZ-1rFgceL3bx8x-rgim5JmZe9thHheAVU2sxlMD19wxQd9MsklbINj0YEQUDKT_CcxZFqdf-ShxrocErRyarHDa8oOweOMP382bDIWzeFuUYxseYFFhcqCkYzoUiLs7wyRHR03HcI5m7O8'" 
+             width="218" height="30">
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="hidden xl:flex items-center space-x-6 text-xs font-semibold tracking-wider text-brand-muted uppercase ml-8" aria-label="Main Navigation">
+        <a class="nav-link hover:text-brand-lime transition-colors duration-200" href="#hero">Home</a>
+        <a class="nav-link hover:text-brand-lime transition-colors duration-200" href="#programs">Programs</a>
+        <a class="nav-link hover:text-brand-lime transition-colors duration-200" href="#transformations">Transformations</a>
+        <a class="nav-link hover:text-brand-lime transition-colors duration-200" href="#coach">About Coach</a>
+        <a class="nav-link hover:text-brand-lime transition-colors duration-200" href="#testimonials">Testimonials</a>
+        <a class="nav-link hover:text-brand-lime transition-colors duration-200" href="#how-it-works">How It Works</a>
+      </nav>
+
+      <!-- Desktop Action CTA -->
+      <div class="hidden xl:flex items-center gap-3.5">
+        <a class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-brand-muted hover:text-brand-lime border border-white/10 hover:border-brand-lime/30 text-xs font-semibold tracking-wider uppercase transition-all duration-200" href="trainer/login.html" title="Trainer Portal Login">
+          <svg class="w-3.5 h-3.5 text-brand-lime" width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+          </svg>
+          <span>Trainer Login</span>
+        </a>
+        <a class="btn-magnetic inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-brand-lime text-brand-black font-extrabold text-xs tracking-wider uppercase shadow-glow-lime-sm" href="#consultation">
+          <span>Start Your Transformation</span>
+          <svg class="btn-arrow ml-1.5 w-4 h-4" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Mobile / Tablet Menu Toggle Button -->
+      <button aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-menu" class="xl:hidden p-2.5 rounded-xl bg-brand-surface border border-white/10 text-brand-lime hover:text-brand-softWhite hover:border-brand-lime/50 focus:outline-none transition-colors" id="mobile-menu-btn" type="button">
+        <svg class="w-6 h-6" width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile / Tablet Dropdown Navigation -->
+    <div class="hidden xl:hidden border-b border-brand-border bg-brand-graphite/95 backdrop-blur-xl px-4 pt-3 pb-6 space-y-3 transition-all duration-300" id="mobile-menu">
+      <a class="block text-brand-muted hover:text-brand-lime py-2 text-base font-semibold uppercase" href="#hero">Home</a>
+      <a class="block text-brand-muted hover:text-brand-lime py-2 text-base font-semibold uppercase" href="#programs">Programs</a>
+      <a class="block text-brand-muted hover:text-brand-lime py-2 text-base font-semibold uppercase" href="#transformations">Transformations</a>
+      <a class="block text-brand-muted hover:text-brand-lime py-2 text-base font-semibold uppercase" href="#coach">About Coach</a>
+      <a class="block text-brand-muted hover:text-brand-lime py-2 text-base font-semibold uppercase" href="#testimonials">Testimonials</a>
+      <a class="block text-brand-muted hover:text-brand-lime py-2 text-base font-semibold uppercase" href="#how-it-works">How It Works</a>
+      <div class="pt-2 border-t border-white/10">
+        <a class="flex items-center justify-between text-brand-muted hover:text-brand-lime py-2 text-sm font-semibold uppercase tracking-wider" href="trainer/login.html">
+          <span class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-brand-lime" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" stroke-width="2"></path></svg>
+            <span>Trainer Login</span>
+          </span>
+          <span class="text-xs text-brand-lime font-mono">PORTAL →</span>
+        </a>
+      </div>
+      <a class="block w-full text-center mt-4 px-5 py-3 rounded-full bg-brand-lime text-brand-black font-extrabold text-xs tracking-wider uppercase shadow-glow-lime-sm" href="#consultation">
+        Start Your Transformation
+      </a>
+    </div>
+  </header>
+  <!-- END: Sticky Navigation Bar -->
+
+  <main class="relative z-10">
+
+    <!-- ======================================================================
+         BEGIN: Hero Section — Editorial Cinematic Composition
+         ====================================================================== -->
+    <section class="hero-cinematic relative overflow-hidden" id="hero">
+      <!-- Energy Dust Particle Background Canvas -->
+      <canvas class="absolute inset-0 pointer-events-none opacity-40 z-0" id="hero-dust-canvas" aria-hidden="true"></canvas>
+
+      <!-- Multi-layer Atmospheric Ambient Glows & Subtle Studio Grid -->
+      <div class="hero-grid-pattern absolute inset-0 pointer-events-none z-[1]" aria-hidden="true"></div>
+      <div class="hero-glow hero-glow--primary absolute pointer-events-none rounded-full" aria-hidden="true"></div>
+      <div class="hero-glow hero-glow--secondary absolute pointer-events-none rounded-full" aria-hidden="true"></div>
+      <div class="hero-glow hero-glow--accent absolute pointer-events-none rounded-full" aria-hidden="true"></div>
+
+      <!-- Cinematic Vignette Overlay -->
+      <div class="hero-vignette absolute inset-0 pointer-events-none z-[5]" aria-hidden="true"></div>
+
+      <!-- Atmospheric Light Arc (as in reference image) -->
+      <div class="hero-light-arc absolute pointer-events-none z-[12]" aria-hidden="true"></div>
+
+      <!-- ===== Centered / Center-Right Athlete Image (The Dominant Visual Centerpiece) ===== -->
+      <div class="hero-athlete-container absolute inset-0 flex justify-center lg:justify-end items-end z-[15] pointer-events-none">
+        <img alt="FORGE Elite Athlete in peak physical condition" 
+             class="hero-athlete-img pointer-events-none select-none"
+             src="assets/images/hero-athlete.png"
+             onerror="this.src='https://lh3.googleusercontent.com/aida-public/AB6AXuCSG7SXW2l_0LwJVTJN_neifYDG-AU4mHvE-QtRxKs7xZc_3wpRTrO9DarcyrUpbmxY4XjTXHP1Yc7sQlzem0wF8oLxfd06Nk0Rgpx46tdHV_xtwNUWoJviC1Z4skFm3Kh5ZP0JuByN3hzy2L26bxkDiRKtyKWtSHMvwa72vefB-TqmBzOONS-RXgNXc8EnyVHzHMOKvprSiN1F90-EUri8VOlxXBdO_HjshPp35s0qGDF5wNymezhKvw'"
+             width="550" height="850" fetchpriority="high">
+      </div>
+
+      <!-- ===== Content Wrapper ===== -->
+      <div class="relative z-[20] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full hero-content-wrapper">
+
+        <!-- Top Eyebrow / Pill -->
+        <div class="hero-eyebrow inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-graphite/80 border border-white/10 w-fit pulse-lime-pill backdrop-blur-sm">
+          <span class="w-2.5 h-2.5 rounded-full bg-brand-lime animate-ping" aria-hidden="true"></span>
+          <span class="text-xs font-bold tracking-widest text-brand-lime uppercase">Elite 1-on-1 Coaching • EST. 2018</span>
+        </div>
+
+        <!-- ===== Controlled Oversized Headline with Interleaved Layering ===== -->
+        <div class="hero-headline-wrapper relative">
+          <h1 class="hero-headline font-display font-black uppercase tracking-tight leading-[0.9] select-none" aria-label="BUILD YOUR STRONGEST SELF.">
+            <!-- Line 1: BUILD YOUR (behind athlete torso/shoulder, high contrast) -->
+            <span class="hero-headline__line hero-headline__line--1 hero-anim-text block">
+              <span class="text-white">BUILD </span><span class="text-white/90">YOUR</span>
+            </span>
+            <!-- Line 2: STRONGEST (electric lime with ambient glow) -->
+            <span class="hero-headline__line hero-headline__line--2 hero-anim-text block">
+              <span class="text-brand-lime">STRONGEST</span>
+            </span>
+            <!-- Line 3: SELF. (soft white with lime period) -->
+            <span class="hero-headline__line hero-headline__line--3 hero-anim-text block">
+              <span class="hero-self-text text-white">SELF</span><span class="text-brand-lime">.</span>
+            </span>
+          </h1>
+        </div>
+
+        <!-- ===== Bottom Content: Subtitle, Dual CTAs, Trust Statement ===== -->
+        <div class="hero-bottom-content relative z-[30] mt-6 sm:mt-8">
+          <!-- Subtitle Description -->
+          <p class="hero-anim-text text-brand-muted text-sm sm:text-base font-normal max-w-lg leading-relaxed mb-6">
+            Elite coaching. Biomechanical precision. A bespoke framework that pushes you past every plateau — whatever your ambition.
+          </p>
+
+          <!-- Dual CTAs -->
+          <div class="hero-anim-text flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 mb-6 w-full sm:w-auto">
+            <a class="btn-magnetic hero-cta-primary inline-flex items-center justify-center px-7 py-3.5 sm:px-8 sm:py-4 rounded-full bg-brand-lime text-brand-black font-extrabold text-sm tracking-wider uppercase text-center shadow-glow-lime-sm" href="#consultation">
+              <span>Start Your Transformation</span>
+              <svg class="btn-arrow ml-2 w-4 h-4" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+              </svg>
+            </a>
+
+            <a class="btn-magnetic inline-flex items-center justify-center gap-2.5 px-6 py-3.5 sm:px-7 sm:py-4 rounded-full bg-brand-graphite/80 text-brand-softWhite border border-brand-border backdrop-blur-md font-bold text-sm tracking-wider uppercase transition-colors duration-200 hover:border-brand-lime hover:text-brand-lime text-center" href="#programs">
+              <span class="w-5 h-5 rounded-full bg-brand-lime/10 border border-brand-lime/40 flex items-center justify-center text-brand-lime text-[10px]" aria-hidden="true">▶</span>
+              <span>Explore Programs</span>
+            </a>
+          </div>
+
+          <!-- Micro Credibility Row -->
+          <div class="hero-anim-text flex items-center gap-2.5 text-[11px] sm:text-xs font-bold tracking-widest uppercase text-brand-muted/80">
+            <span class="w-2 h-2 rounded-full bg-brand-lime shrink-0" aria-hidden="true"></span>
+            <span>100% Evidence-Based Biometric Periodization</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom fade-out gradient to seamlessly bridge into the statistics section -->
+      <div class="absolute inset-x-0 bottom-0 h-28 sm:h-36 bg-gradient-to-t from-brand-black via-brand-black/90 to-transparent z-[22] pointer-events-none" aria-hidden="true"></div>
+    </section>
+    <!-- END: Hero Section -->
+
+    <!-- ======================================================================
+         BEGIN: Statistics Proof Banner
+         ====================================================================== -->
+    <section class="border-y border-white/10 bg-brand-graphite/60 py-10 relative overflow-hidden" data-purpose="proof-metrics">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-white/10">
+          
+          <div class="pt-4 md:pt-0 reveal-on-scroll">
+            <p class="font-display font-extrabold text-4xl sm:text-5xl text-brand-lime">
+              <span class="stat-counter" data-target="250">250</span>+
+            </p>
+            <p class="mt-1 text-xs sm:text-sm font-semibold tracking-wider text-brand-muted uppercase">Clients Coached</p>
+          </div>
+
+          <div class="pt-4 md:pt-0 reveal-on-scroll delay-100">
+            <p class="font-display font-extrabold text-4xl sm:text-5xl text-brand-softWhite">
+              <span class="stat-counter" data-target="95">95</span>%
+            </p>
+            <p class="mt-1 text-xs sm:text-sm font-semibold tracking-wider text-brand-lime uppercase">Success &amp; Retention</p>
+          </div>
+
+          <div class="pt-4 md:pt-0 reveal-on-scroll delay-200">
+            <p class="font-display font-extrabold text-4xl sm:text-5xl text-brand-lime">
+              <span class="stat-counter" data-target="5">5</span>+ <span class="text-2xl text-brand-softWhite font-sans">Yrs</span>
+            </p>
+            <p class="mt-1 text-xs sm:text-sm font-semibold tracking-wider text-brand-muted uppercase">Elite Experience</p>
+          </div>
+
+          <div class="pt-4 md:pt-0 reveal-on-scroll delay-300">
+            <p class="font-display font-extrabold text-4xl sm:text-5xl text-brand-softWhite">
+              <span class="stat-counter" data-target="100">100</span>%
+            </p>
+            <p class="mt-1 text-xs sm:text-sm font-semibold tracking-wider text-brand-lime uppercase">Individualized Protocols</p>
+          </div>
+
+        </div>
+        <p class="text-[10px] text-center text-brand-muted/50 mt-6 tracking-wider uppercase">Verified athlete outcomes across strength, recomposition, and lifestyle optimization.</p>
+      </div>
+    </section>
+    <!-- END: Statistics Proof Banner -->
+
+    <!-- ======================================================================
+         BEGIN: Programs Section (Coaching Blueprints)
+         ====================================================================== -->
+    <section class="py-24 relative bg-brand-black scroll-mt-20" data-purpose="training-blueprints" id="programs">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Section Header -->
+        <div class="max-w-3xl mx-auto text-center mb-16 reveal-on-scroll">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-surface border border-white/10 text-brand-lime text-xs font-bold uppercase tracking-widest mb-4 pulse-lime-pill">
+            Coaching Blueprints
+          </div>
+          <h2 class="font-display font-black text-2xl sm:text-4xl lg:text-5xl uppercase tracking-tight text-brand-softWhite mb-4">
+            Train With Purpose.
+          </h2>
+          <p class="text-brand-muted text-base sm:text-lg">
+            Coaching built around your goals, biomechanics, and daily lifestyle. No cookie-cutter PDF sheets—only high-performance frameworks.
+          </p>
+        </div>
+
+        <!-- 3-Column Program Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          
+          <!-- Card 01: Fat Loss & Conditioning -->
+          <div class="glass-card rounded-2xl p-8 relative flex flex-col justify-between group reveal-on-scroll delay-100">
+            <div class="absolute top-0 left-8 right-8 h-1 bg-transparent group-hover:bg-brand-lime transition-all duration-300 rounded-b"></div>
+            <div>
+              <div class="flex items-center justify-between mb-6">
+                <span class="text-xs font-display font-black text-brand-lime tracking-widest uppercase">Protocol 01</span>
+                <span class="p-2.5 rounded-xl bg-brand-surface text-brand-lime border border-white/5 group-hover:border-brand-lime/40 group-hover:shadow-glow-lime-sm transition-all duration-300">
+                  <svg class="w-5 h-5 transition-transform duration-300 group-hover:scale-110" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M13 10V3L4 14h7v7l9-11h-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                  </svg>
+                </span>
+              </div>
+              <h3 class="font-display font-black text-2xl uppercase tracking-wide text-brand-softWhite mb-3 group-hover:text-brand-lime transition-colors duration-200">
+                Fat Loss &amp; Conditioning
+              </h3>
+              <p class="text-brand-muted text-sm leading-relaxed mb-6">
+                Shed persistent body fat while preserving lean tissue. Engineered through structured caloric periodization, metabolic conditioning, and sustainable daily habits.
+              </p>
+              <!-- Highlights -->
+              <div class="space-y-2 mb-8">
+                <div class="flex items-center gap-2 text-xs font-medium text-brand-softWhite/80">
+                  <span class="text-brand-lime font-bold" aria-hidden="true">✔</span> Metabolic Rate Optimization
+                </div>
+                <div class="flex items-center gap-2 text-xs font-medium text-brand-softWhite/80">
+                  <span class="text-brand-lime font-bold" aria-hidden="true">✔</span> Macronutrient &amp; Flexible Diet Strategy
+                </div>
+                <div class="flex items-center gap-2 text-xs font-medium text-brand-softWhite/80">
+                  <span class="text-brand-lime font-bold" aria-hidden="true">✔</span> Step Count &amp; Recovery Benchmarking
+                </div>
+              </div>
+            </div>
+            <a class="btn-magnetic w-full py-3.5 px-4 rounded-xl bg-brand-surface text-brand-softWhite border border-brand-border text-center text-xs font-extrabold uppercase tracking-wider group-hover:bg-brand-lime group-hover:text-brand-black group-hover:border-brand-lime flex items-center justify-center gap-1.5" 
+               href="#consultation" 
+               data-program-select="fat-loss">
+              <span>Apply For Fat Loss</span>
+              <span class="btn-arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+
+          <!-- Card 02: Hypertrophy & Muscle Building (Featured) -->
+          <div class="glass-card rounded-2xl p-8 relative flex flex-col justify-between border-brand-lime/50 group shadow-lg shadow-brand-lime/10 reveal-on-scroll delay-200">
+            <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-3.5 py-1 rounded-full bg-brand-lime text-brand-black text-[10px] font-black tracking-widest uppercase shadow-glow-lime-sm">
+              Most Popular
+            </div>
+            <div>
+              <div class="flex items-center justify-between mb-6">
+                <span class="text-xs font-display font-black text-brand-lime tracking-widest uppercase">Protocol 02</span>
+                <span class="p-2.5 rounded-xl bg-brand-surface text-brand-lime border border-white/5 group-hover:border-brand-lime/40 group-hover:shadow-glow-lime-sm transition-all duration-300">
+                  <svg class="w-5 h-5 transition-transform duration-300 group-hover:scale-110" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                  </svg>
+                </span>
+              </div>
+              <h3 class="font-display font-black text-2xl uppercase tracking-wide text-brand-softWhite mb-3 group-hover:text-brand-lime transition-colors duration-200">
+                Muscle Building &amp; Hypertrophy
+              </h3>
+              <p class="text-brand-muted text-sm leading-relaxed mb-6">
+                Add dense, functional muscle with progressive overload algorithms, scientific volume targets, and personalized surplus nutrition plans designed for hardgainers and busy professionals.
+              </p>
+              <!-- Highlights -->
+              <div class="space-y-2 mb-8">
+                <div class="flex items-center gap-2 text-xs font-medium text-brand-softWhite/80">
+                  <span class="text-brand-lime font-bold" aria-hidden="true">✔</span> Biomechanically Optimized Splits
+                </div>
+                <div class="flex items-center gap-2 text-xs font-medium text-brand-softWhite/80">
+                  <span class="text-brand-lime font-bold" aria-hidden="true">✔</span> Weekly Progressive Overload Audits
+                </div>
+                <div class="flex items-center gap-2 text-xs font-medium text-brand-softWhite/80">
+                  <span class="text-brand-lime font-bold" aria-hidden="true">✔</span> Hypertrophy-Specific Video Form Check
+                </div>
+              </div>
+            </div>
+            <a class="btn-magnetic w-full py-3.5 px-4 rounded-xl bg-brand-lime text-brand-black text-center text-xs font-extrabold uppercase tracking-wider shadow-glow-lime-sm flex items-center justify-center gap-1.5" 
+               href="#consultation" 
+               data-program-select="muscle-building">
+              <span>Apply For Muscle Building</span>
+              <span class="btn-arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+
+          <!-- Card 03: 1-on-1 Executive Coaching -->
+          <div class="glass-card rounded-2xl p-8 relative flex flex-col justify-between group reveal-on-scroll delay-300">
+            <div class="absolute top-0 left-8 right-8 h-1 bg-transparent group-hover:bg-brand-lime transition-all duration-300 rounded-b"></div>
+            <div>
+              <div class="flex items-center justify-between mb-6">
+                <span class="text-xs font-display font-black text-brand-lime tracking-widest uppercase">Protocol 03</span>
+                <span class="p-2.5 rounded-xl bg-brand-surface text-brand-lime border border-white/5 group-hover:border-brand-lime/40 group-hover:shadow-glow-lime-sm transition-all duration-300">
+                  <svg class="w-5 h-5 transition-transform duration-300 group-hover:scale-110" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                  </svg>
+                </span>
+              </div>
+              <h3 class="font-display font-black text-2xl uppercase tracking-wide text-brand-softWhite mb-3 group-hover:text-brand-lime transition-colors duration-200">
+                1-on-1 Executive Coaching
+              </h3>
+              <p class="text-brand-muted text-sm leading-relaxed mb-6">
+                The ultimate white-glove coaching experience. Direct daily access to Coach Haisam, custom travel workout adaptations, restaurant menu guidance, and weekly video analysis.
+              </p>
+              <!-- Highlights -->
+              <div class="space-y-2 mb-8">
+                <div class="flex items-center gap-2 text-xs font-medium text-brand-softWhite/80">
+                  <span class="text-brand-lime font-bold" aria-hidden="true">✔</span> Direct WhatsApp Coach Access (24h)
+                </div>
+                <div class="flex items-center gap-2 text-xs font-medium text-brand-softWhite/80">
+                  <span class="text-brand-lime font-bold" aria-hidden="true">✔</span> Weekly In-Depth Video Check-In
+                </div>
+                <div class="flex items-center gap-2 text-xs font-medium text-brand-softWhite/80">
+                  <span class="text-brand-lime font-bold" aria-hidden="true">✔</span> Lifestyle &amp; Travel Protocol Tweaks
+                </div>
+              </div>
+            </div>
+            <a class="btn-magnetic w-full py-3.5 px-4 rounded-xl bg-brand-surface text-brand-softWhite border border-brand-border text-center text-xs font-extrabold uppercase tracking-wider group-hover:bg-brand-lime group-hover:text-brand-black group-hover:border-brand-lime flex items-center justify-center gap-1.5" 
+               href="#consultation" 
+               data-program-select="executive-recomp">
+              <span>Apply For Executive 1-on-1</span>
+              <span class="btn-arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+    <!-- END: Programs Section -->
+
+    <!-- ======================================================================
+         BEGIN: Transformations Section (Proven Outcomes)
+         ====================================================================== -->
+    <section class="py-24 bg-brand-graphite/40 border-t border-white/5 relative scroll-mt-20" data-purpose="transformation-gallery" id="transformations">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Header -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 reveal-on-scroll">
+          <div>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-surface border border-white/10 text-brand-lime text-xs font-bold uppercase tracking-widest mb-4 pulse-lime-pill">
+              Proven Outcomes
+            </div>
+            <h2 class="font-display font-black text-xl sm:text-4xl lg:text-5xl uppercase tracking-tight text-brand-softWhite">
+              Real People. <br><span class="text-brand-lime">Real Transformations.</span>
+            </h2>
+          </div>
+          <p class="text-brand-muted max-w-md text-sm sm:text-base">
+            Our clients are busy professionals, fathers, and entrepreneurs who committed to the process and built a physique that lasts.
+          </p>
+        </div>
+
+        <!-- 3 Rich Transformation Cards -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          
+          <!-- Transformation 1 -->
+          <div class="glass-card rounded-2xl overflow-hidden p-6 flex flex-col justify-between reveal-on-scroll delay-100 group">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-xs font-extrabold text-brand-lime uppercase tracking-wider bg-brand-lime/10 px-3 py-1 rounded-md border border-brand-lime/20">16-Week Protocol</span>
+                <span class="text-xs text-brand-muted font-semibold">Body Recomp</span>
+              </div>
+              <div class="grid grid-cols-2 gap-3 mb-6 bg-brand-black/50 p-4 rounded-xl border border-white/5 transition-colors group-hover:border-brand-lime/20">
+                <div>
+                  <span class="text-[10px] text-brand-muted uppercase tracking-wider font-bold block">Starting Point</span>
+                  <p class="text-lg font-bold text-brand-softWhite mt-1">94 kg</p>
+                  <span class="text-xs text-brand-muted">26% Body Fat</span>
+                </div>
+                <div class="border-l border-white/10 pl-3">
+                  <span class="text-[10px] text-brand-lime uppercase tracking-wider font-bold block">Final Result</span>
+                  <p class="text-lg font-bold text-brand-lime mt-1">82 kg (-12kg)</p>
+                  <span class="text-xs text-brand-softWhite font-semibold">13% Lean Body Fat</span>
+                </div>
+              </div>
+              <h3 class="font-display font-black text-xl text-brand-softWhite mb-2 group-hover:text-brand-lime transition-colors">Michael Reed</h3>
+              <p class="text-brand-muted text-sm leading-relaxed mb-4">
+                "Dropped 12kg and finally built consistent gym habits while sustaining high energy during my 10-hour workdays. The nutrition system never felt restrictive."
+              </p>
+            </div>
+            <div class="pt-4 border-t border-white/10 flex items-center justify-between text-xs text-brand-muted">
+              <span>Goal: Fat Loss &amp; Core Strength</span>
+              <span class="text-brand-lime font-bold flex items-center gap-1">
+                <span class="w-1.5 h-1.5 rounded-full bg-brand-lime animate-pulse" aria-hidden="true"></span>
+                100% Adherence
+              </span>
+            </div>
+          </div>
+
+          <!-- Transformation 2 -->
+          <div class="glass-card rounded-2xl overflow-hidden p-6 flex flex-col justify-between border-brand-lime/40 reveal-on-scroll delay-200 group">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-xs font-extrabold text-brand-lime uppercase tracking-wider bg-brand-lime/10 px-3 py-1 rounded-md border border-brand-lime/20">24-Week Protocol</span>
+                <span class="text-xs text-brand-muted font-semibold">Strength &amp; Power</span>
+              </div>
+              <div class="grid grid-cols-2 gap-3 mb-6 bg-brand-black/50 p-4 rounded-xl border border-white/5 transition-colors group-hover:border-brand-lime/20">
+                <div>
+                  <span class="text-[10px] text-brand-muted uppercase tracking-wider font-bold block">Starting Point</span>
+                  <p class="text-lg font-bold text-brand-softWhite mt-1">110kg Deadlift</p>
+                  <span class="text-xs text-brand-muted">Frequent Back Soreness</span>
+                </div>
+                <div class="border-l border-white/10 pl-3">
+                  <span class="text-[10px] text-brand-lime uppercase tracking-wider font-bold block">Final Result</span>
+                  <p class="text-lg font-bold text-brand-lime mt-1">195kg Deadlift</p>
+                  <span class="text-xs text-brand-softWhite font-semibold">Zero Pain / High Mobility</span>
+                </div>
+              </div>
+              <h3 class="font-display font-black text-xl text-brand-softWhite mb-2 group-hover:text-brand-lime transition-colors">Sarah Jenkins</h3>
+              <p class="text-brand-muted text-sm leading-relaxed mb-4">
+                "Doubled my barbell strength and redefined metabolic conditioning without crash dieting or draining 2-hour gym sessions. Coach Haisam's feedback was game-changing."
+              </p>
+            </div>
+            <div class="pt-4 border-t border-white/10 flex items-center justify-between text-xs text-brand-muted">
+              <span>Goal: Athletic Performance</span>
+              <span class="text-brand-lime font-bold flex items-center gap-1">
+                <span class="w-1.5 h-1.5 rounded-full bg-brand-lime animate-pulse" aria-hidden="true"></span>
+                PR in 4 Lifts
+              </span>
+            </div>
+          </div>
+
+          <!-- Transformation 3 -->
+          <div class="glass-card rounded-2xl overflow-hidden p-6 flex flex-col justify-between reveal-on-scroll delay-300 group">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-xs font-extrabold text-brand-lime uppercase tracking-wider bg-brand-lime/10 px-3 py-1 rounded-md border border-brand-lime/20">12-Week Protocol</span>
+                <span class="text-xs text-brand-muted font-semibold">Lean Hypertrophy</span>
+              </div>
+              <div class="grid grid-cols-2 gap-3 mb-6 bg-brand-black/50 p-4 rounded-xl border border-white/5 transition-colors group-hover:border-brand-lime/20">
+                <div>
+                  <span class="text-[10px] text-brand-muted uppercase tracking-wider font-bold block">Starting Point</span>
+                  <p class="text-lg font-bold text-brand-softWhite mt-1">71 kg</p>
+                  <span class="text-xs text-brand-muted">Skinny-Fat Plateau</span>
+                </div>
+                <div class="border-l border-white/10 pl-3">
+                  <span class="text-[10px] text-brand-lime uppercase tracking-wider font-bold block">Final Result</span>
+                  <p class="text-lg font-bold text-brand-lime mt-1">77 kg (+6kg Muscle)</p>
+                  <span class="text-xs text-brand-softWhite font-semibold">Veins &amp; Visible Abs</span>
+                </div>
+              </div>
+              <h3 class="font-display font-black text-xl text-brand-softWhite mb-2 group-hover:text-brand-lime transition-colors">David Chen</h3>
+              <p class="text-brand-muted text-sm leading-relaxed mb-4">
+                "Achieved visible lean definition while balancing an intense 60-hour work week. The weekly video feedback kept me completely accountable and injury-free."
+              </p>
+            </div>
+            <div class="pt-4 border-t border-white/10 flex items-center justify-between text-xs text-brand-muted">
+              <span>Goal: Clean Hypertrophy</span>
+              <span class="text-brand-lime font-bold flex items-center gap-1">
+                <span class="w-1.5 h-1.5 rounded-full bg-brand-lime animate-pulse" aria-hidden="true"></span>
+                100% On-Track
+              </span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+    <!-- END: Transformations Section -->
+
+    <!-- ======================================================================
+         BEGIN: Coach Introduction Section
+         ====================================================================== -->
+    <section class="py-24 relative overflow-hidden bg-brand-black scroll-mt-20" data-purpose="coach-introduction" id="coach">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          
+          <!-- Coach Image Column -->
+          <div class="lg:col-span-5 relative reveal-on-scroll">
+            <div class="relative mx-auto max-w-md rounded-3xl p-2 bg-gradient-to-tr from-brand-lime/30 via-brand-graphite to-brand-border shadow-2xl group">
+              <div class="rounded-2xl overflow-hidden aspect-[4/5] bg-brand-graphite relative">
+                <img alt="Head Coach Haisam in modern black sportswear" 
+                     class="w-full h-full object-cover object-center filter contrast-105 transition-transform duration-700 group-hover:scale-105" 
+                     loading="lazy" 
+                     src="assets/images/coach-haisam.jpg"
+                     onerror="this.src='https://lh3.googleusercontent.com/aida/AEtjO1U11EzdB1nYej6MAlai98pEwJJVRYX6o9jGwJeQuLbMgjLA2TXyC4thwqDNiraTKqbDRk_E1EGrvWTOQGtFRGjGKQ9Zo_ol3C7NEVv6R2eQ07t7Vtf7Zrng4IGRyyXLmIzkKK8cg_rcmwTFMmjcdkwc6_QguFrP-ULFNsIgFW5XjsMpL8xosQNcI6U-33faGSLSCiQGYBfz1n6clQKdbZWZXdDFP2Uv84wMTs0pntllYqXwdqhbQxQYFxA'"
+                     width="512" height="382">
+                <div class="absolute inset-0 bg-gradient-to-t from-brand-black/95 via-transparent to-transparent" aria-hidden="true"></div>
+                <div class="absolute bottom-5 left-5 right-5">
+                  <p class="text-xs font-black uppercase tracking-widest text-brand-lime">Head Coach &amp; Founder</p>
+                  <h3 class="font-display font-black text-2xl text-brand-softWhite">Coach Haisam</h3>
+                  <p class="text-xs text-brand-muted">Certified Strength &amp; Conditioning Specialist</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Coach Content Column -->
+          <div class="lg:col-span-7 reveal-on-scroll delay-100">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-surface border border-white/10 text-brand-lime text-xs font-bold uppercase tracking-widest mb-4 pulse-lime-pill">
+              Meet Your Coach
+            </div>
+            <h2 class="font-display font-black text-2xl sm:text-4xl lg:text-5xl uppercase tracking-tight text-brand-softWhite mb-6">
+              Your Goals. <br>
+              <span class="text-brand-lime">My Relentless Commitment.</span>
+            </h2>
+            <p class="text-brand-muted text-base sm:text-lg leading-relaxed mb-6">
+              I don't believe in fad diets, 30-day gimmicks, or generic fitness templates. Real transformation is built on progressive strength overload, nutritional science, and habitual discipline designed around your actual lifestyle.
+            </p>
+
+            <!-- 3 Core Principles -->
+            <div class="space-y-4 mb-8">
+              <div class="glass-card p-4 rounded-xl flex items-start gap-4">
+                <div class="w-8 h-8 rounded-lg bg-brand-lime/10 border border-brand-lime/30 flex items-center justify-center text-brand-lime shrink-0 mt-0.5 font-bold" aria-hidden="true">
+                  01
+                </div>
+                <div>
+                  <h4 class="font-bold text-brand-softWhite text-base mb-1">Tailored Biomechanics, Not Cookie-Cutter Routines</h4>
+                  <p class="text-xs sm:text-sm text-brand-muted">Every exercise is curated around your limb lengths, injury history, and joint comfort so you train pain-free forever.</p>
+                </div>
+              </div>
+
+              <div class="glass-card p-4 rounded-xl flex items-start gap-4">
+                <div class="w-8 h-8 rounded-lg bg-brand-lime/10 border border-brand-lime/30 flex items-center justify-center text-brand-lime shrink-0 mt-0.5 font-bold" aria-hidden="true">
+                  02
+                </div>
+                <div>
+                  <h4 class="font-bold text-brand-softWhite text-base mb-1">Sustainable Nutrition Over Severe Deprivation</h4>
+                  <p class="text-xs sm:text-sm text-brand-muted">Eat with your family, travel for business, and enjoy social dinners while hitting precise body composition targets.</p>
+                </div>
+              </div>
+
+              <div class="glass-card p-4 rounded-xl flex items-start gap-4">
+                <div class="w-8 h-8 rounded-lg bg-brand-lime/10 border border-brand-lime/30 flex items-center justify-center text-brand-lime shrink-0 mt-0.5 font-bold" aria-hidden="true">
+                  03
+                </div>
+                <div>
+                  <h4 class="font-bold text-brand-softWhite text-base mb-1">Data-Driven Accountability &amp; Form Analysis</h4>
+                  <p class="text-xs sm:text-sm text-brand-muted">Submit your lifting videos for frame-by-frame critique and receive weekly adaptive adjustments to keep progressing.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- CTA Button -->
+            <a class="btn-magnetic inline-flex items-center gap-2 px-8 py-4 rounded-full bg-brand-lime text-brand-black font-extrabold text-sm tracking-wider uppercase shadow-glow-lime-sm" href="#consultation">
+              <span>Work Directly With Haisam</span>
+              <svg class="btn-arrow w-4 h-4" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+              </svg>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+    <!-- END: Coach Introduction Section -->
+
+    <!-- ======================================================================
+         BEGIN: Testimonials Section (Interactive Tab Switcher)
+         ====================================================================== -->
+    <section class="py-24 bg-brand-graphite/30 border-y border-white/5 relative scroll-mt-20" data-purpose="client-testimonials" id="testimonials">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-2xl mx-auto mb-12 reveal-on-scroll">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-surface border border-white/10 text-brand-lime text-xs font-bold uppercase tracking-widest mb-4 pulse-lime-pill">
+            Testimonials
+          </div>
+          <h2 class="font-display font-black text-2xl sm:text-4xl lg:text-5xl uppercase tracking-tight text-brand-softWhite">
+            The Work Speaks.
+          </h2>
+        </div>
+
+        <!-- Interactive Testimonial Switcher Tabs -->
+        <div class="flex justify-center items-center gap-2 sm:gap-4 mb-10 reveal-on-scroll delay-100 flex-wrap" id="testimonial-tabs" role="tablist" aria-label="Client Testimonials">
+          <button class="px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 bg-brand-lime text-brand-black shadow-glow-lime-sm" data-index="0" role="tab" aria-selected="true" type="button">
+            Emma R. (Executive)
+          </button>
+          <button class="px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 bg-brand-surface text-brand-muted hover:text-brand-softWhite border border-white/10" data-index="1" role="tab" aria-selected="false" type="button">
+            Adam H. (Software)
+          </button>
+          <button class="px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 bg-brand-surface text-brand-muted hover:text-brand-softWhite border border-white/10" data-index="2" role="tab" aria-selected="false" type="button">
+            Marcus L. (Private Equity)
+          </button>
+        </div>
+
+        <!-- Dynamic Featured Big Quote Container -->
+        <div class="glass-card rounded-3xl p-8 sm:p-12 mb-10 relative overflow-hidden border border-brand-lime/30 reveal-on-scroll delay-200 min-h-[300px] flex flex-col justify-center" role="tabpanel">
+          <div class="absolute -top-10 -right-6 font-display font-black text-[140px] text-white/5 select-none pointer-events-none" aria-hidden="true">
+            “
+          </div>
+          <div class="max-w-4xl relative z-10 transition-opacity duration-300" id="featured-quote-container">
+            <div class="flex items-center gap-1 text-brand-lime mb-6" aria-label="5 out of 5 stars">
+              ★★★★★
+            </div>
+            <p class="font-display font-bold text-xl sm:text-3xl text-brand-softWhite leading-snug mb-8" id="featured-quote-text">
+              "I've tried countless personal trainers and cookie-cutter apps, but nothing ever felt sustainable. With FORGE, everything clicked. I feel stronger, healthier, and more confident in my body than I have in 10 years."
+            </p>
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-full bg-brand-lime text-brand-black flex items-center justify-center font-black text-lg shadow-glow-lime-sm" id="featured-quote-avatar" aria-hidden="true">
+                ER
+              </div>
+              <div>
+                <p class="font-bold text-brand-softWhite text-base" id="featured-quote-author">Emma R.</p>
+                <p class="text-xs text-brand-muted" id="featured-quote-role">Executive &amp; Marathon Athlete • 1-on-1 Coaching Client</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Two Complementary Feedback Cards (Dynamically rotated to prevent duplication) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8" id="bottom-testimonials-grid">
+          <div class="glass-card p-6 rounded-2xl flex flex-col justify-between reveal-on-scroll delay-100" id="bottom-card-0">
+            <div>
+              <div class="text-brand-lime text-xs mb-3" aria-label="5 stars">★★★★★</div>
+              <p class="text-brand-softWhite text-sm sm:text-base leading-relaxed mb-6" id="bottom-quote-0">
+                "The weekly form reviews alone are worth every dollar. I resolved knee pain that had bothered me for 4 years on squats and added 30kg to my working sets in 4 months."
+              </p>
+            </div>
+            <div class="flex items-center gap-3 pt-4 border-t border-white/5">
+              <div class="w-9 h-9 rounded-full bg-brand-surface border border-white/10 flex items-center justify-center font-bold text-xs text-brand-lime" id="bottom-avatar-0" aria-hidden="true">
+                AH
+              </div>
+              <div>
+                <p class="text-xs font-bold text-brand-softWhite" id="bottom-author-0">Adam H.</p>
+                <p class="text-[11px] text-brand-muted" id="bottom-role-0">Software Architect • Hypertrophy Protocol</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="glass-card p-6 rounded-2xl flex flex-col justify-between reveal-on-scroll delay-200" id="bottom-card-1">
+            <div>
+              <div class="text-brand-lime text-xs mb-3" aria-label="5 stars">★★★★★</div>
+              <p class="text-brand-softWhite text-sm sm:text-base leading-relaxed mb-6" id="bottom-quote-1">
+                "As someone who travels across timezones weekly, Coach Haisam built modular hotel-room &amp; resistance band routines that kept my progress continuous. Unrivaled dedication."
+              </p>
+            </div>
+            <div class="flex items-center gap-3 pt-4 border-t border-white/5">
+              <div class="w-9 h-9 rounded-full bg-brand-surface border border-white/10 flex items-center justify-center font-bold text-xs text-brand-lime" id="bottom-avatar-1" aria-hidden="true">
+                ML
+              </div>
+              <div>
+                <p class="text-xs font-bold text-brand-softWhite" id="bottom-author-1">Marcus L.</p>
+                <p class="text-[11px] text-brand-muted" id="bottom-role-1">Private Equity Partner • Executive Coaching</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+    <!-- END: Testimonials Section -->
+
+    <!-- ======================================================================
+         BEGIN: How It Works Section
+         ====================================================================== -->
+    <section class="py-24 bg-brand-black relative scroll-mt-20" data-purpose="process-flow" id="how-it-works">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-2xl mx-auto mb-20 reveal-on-scroll">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-surface border border-white/10 text-brand-lime text-xs font-bold uppercase tracking-widest mb-4 pulse-lime-pill">
+            Simple 3-Step System
+          </div>
+          <h2 class="font-display font-black text-2xl sm:text-4xl lg:text-5xl uppercase tracking-tight text-brand-softWhite">
+            Your Next Chapter <br><span class="text-brand-lime">Starts Here.</span>
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+          <!-- Step 1 -->
+          <div class="glass-card p-8 rounded-2xl relative border-t-2 border-t-brand-lime reveal-on-scroll delay-100">
+            <span class="font-display font-black text-5xl text-brand-lime/30 mb-4 block" aria-hidden="true">01</span>
+            <h3 class="font-display font-bold text-xl uppercase tracking-wide text-brand-softWhite mb-3">
+              1. Discovery Intake
+            </h3>
+            <p class="text-brand-muted text-sm leading-relaxed">
+              Book your complimentary strategy call. We audit your training background, injury profile, schedule, and exact physical targets.
+            </p>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="glass-card p-8 rounded-2xl relative border-t-2 border-t-brand-lime reveal-on-scroll delay-200">
+            <span class="font-display font-black text-5xl text-brand-lime/30 mb-4 block" aria-hidden="true">02</span>
+            <h3 class="font-display font-bold text-xl uppercase tracking-wide text-brand-softWhite mb-3">
+              2. Custom Blueprint
+            </h3>
+            <p class="text-brand-muted text-sm leading-relaxed">
+              Receive your bespoke lifting split, progressive target weights, macro targets, and mobility routine uploaded straight to your portal.
+            </p>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="glass-card p-8 rounded-2xl relative border-t-2 border-t-brand-lime reveal-on-scroll delay-300">
+            <span class="font-display font-black text-5xl text-brand-lime/30 mb-4 block" aria-hidden="true">03</span>
+            <h3 class="font-display font-bold text-xl uppercase tracking-wide text-brand-softWhite mb-3">
+              3. Relentless Execution
+            </h3>
+            <p class="text-brand-muted text-sm leading-relaxed">
+              Train with conviction. We check in every Sunday, review lift videos, fine-tune calories, and celebrate measurable physical breakthroughs.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+    <!-- END: How It Works Section -->
+
+    <!-- ======================================================================
+         BEGIN: Consultation Booking Intake Section
+         ====================================================================== -->
+    <section class="py-24 bg-gradient-to-b from-brand-graphite to-brand-black border-t border-white/10 relative scroll-mt-20" data-purpose="booking-intake" id="consultation">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          
+          <!-- Left Column Copy & Trust Indicators -->
+          <div class="lg:col-span-5 reveal-on-scroll">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-surface border border-white/10 text-brand-lime text-xs font-bold uppercase tracking-widest mb-4 pulse-lime-pill">
+              Zero Obligation
+            </div>
+            <h2 class="font-display font-black text-2xl sm:text-4xl lg:text-5xl uppercase tracking-tight text-brand-softWhite mb-6">
+              Book Your Free <br>
+              <span class="text-brand-lime">Intake Call.</span>
+            </h2>
+            <p class="text-brand-muted text-base leading-relaxed mb-8">
+              Take the first definitive step toward the strongest version of yourself. In this 30-minute 1-on-1 strategy call with Coach Haisam (100% remote online via Google Meet / Zoom / WhatsApp), you will receive:
+            </p>
+
+            <ul class="space-y-4 text-sm text-brand-softWhite/90 mb-10">
+              <li class="flex items-center gap-3">
+                <span class="text-brand-lime font-bold" aria-hidden="true">✔</span>
+                <span>100% Remote Online Video Call with Coach Haisam</span>
+              </li>
+              <li class="flex items-center gap-3">
+                <span class="text-brand-lime font-bold" aria-hidden="true">✔</span>
+                <span>An audit of your current training bottlenecks &amp; plateaus</span>
+              </li>
+              <li class="flex items-center gap-3">
+                <span class="text-brand-lime font-bold" aria-hidden="true">✔</span>
+                <span>Personalized caloric &amp; macronutrient blueprint recommendation</span>
+              </li>
+              <li class="flex items-center gap-3">
+                <span class="text-brand-lime font-bold" aria-hidden="true">✔</span>
+                <span>Direct determination of the right FORGE coaching program</span>
+              </li>
+              <li class="flex items-center gap-3">
+                <span class="text-brand-lime font-bold" aria-hidden="true">✔</span>
+                <span>Strictly zero obligation — honest guidance on whether we are a fit</span>
+              </li>
+            </ul>
+
+            <div class="p-4 rounded-xl bg-brand-surface/70 border border-white/10 flex items-center gap-4">
+              <img alt="Headshot of Coach Haisam" 
+                   class="w-12 h-12 rounded-full object-cover border border-brand-lime shrink-0" 
+                   src="assets/images/coach-haisam.jpg"
+                   onerror="this.src='https://lh3.googleusercontent.com/aida/AEtjO1U11EzdB1nYej6MAlai98pEwJJVRYX6o9jGwJeQuLbMgjLA2TXyC4thwqDNiraTKqbDRk_E1EGrvWTOQGtFRGjGKQ9Zo_ol3C7NEVv6R2eQ07t7Vtf7Zrng4IGRyyXLmIzkKK8cg_rcmwTFMmjcdkwc6_QguFrP-ULFNsIgFW5XjsMpL8xosQNcI6U-33faGSLSCiQGYBfz1n6clQKdbZWZXdDFP2Uv84wMTs0pntllYqXwdqhbQxQYFxA'"
+                   width="48" height="48">
+              <div class="text-xs">
+                <p class="font-bold text-brand-softWhite">"I personally review every application."</p>
+                <p class="text-brand-muted">— Haisam, Founder of FORGE FITNESS</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Consultation Form -->
+          <div class="lg:col-span-7 reveal-on-scroll delay-100">
+            <div class="glass-card p-8 sm:p-10 rounded-3xl border border-white/10 shadow-2xl relative">
+              
+              <!-- Form Element -->
+              <form class="space-y-6" id="intake-form" novalidate>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <!-- Name Field -->
+                  <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-brand-softWhite mb-2" for="full-name">
+                      Full Name <span class="text-brand-lime">*</span>
+                    </label>
+                    <input class="input-interactive w-full bg-brand-black border border-brand-border rounded-xl px-4 py-3 text-sm text-brand-softWhite focus:outline-none" 
+                           id="full-name" 
+                           name="full-name" 
+                           placeholder="e.g. Alex Morgan" 
+                           required 
+                           type="text" 
+                           autocomplete="name">
+                  </div>
+
+                  <!-- Email Field -->
+                  <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-brand-softWhite mb-2" for="email">
+                      Email Address <span class="text-brand-lime">*</span>
+                    </label>
+                    <input class="input-interactive w-full bg-brand-black border border-brand-border rounded-xl px-4 py-3 text-sm text-brand-softWhite focus:outline-none" 
+                           id="email" 
+                           name="email" 
+                           placeholder="alex@domain.com" 
+                           required 
+                           type="email" 
+                           autocomplete="email">
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <!-- Phone Number Field -->
+                  <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-brand-softWhite mb-2" for="phone">
+                      Phone / WhatsApp Number <span class="text-brand-lime">*</span>
+                    </label>
+                    <input class="input-interactive w-full bg-brand-black border border-brand-border rounded-xl px-4 py-3 text-sm text-brand-softWhite focus:outline-none" 
+                           id="phone" 
+                           name="phone" 
+                           placeholder="+1 (555) 000-0000" 
+                           required 
+                           type="tel" 
+                           autocomplete="tel">
+                  </div>
+
+                  <!-- Goal Selection -->
+                  <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-brand-softWhite mb-2" for="primary-goal">
+                      Primary Goal <span class="text-brand-lime">*</span>
+                    </label>
+                    <select class="input-interactive w-full bg-brand-black border border-brand-border rounded-xl px-4 py-3 text-sm text-brand-softWhite focus:outline-none cursor-pointer" 
+                            id="primary-goal" 
+                            name="primary-goal">
+                      <option value="fat-loss">Fat Loss &amp; Conditioning</option>
+                      <option value="muscle-building">Hypertrophy &amp; Muscle Gain</option>
+                      <option value="strength-performance">Strength &amp; Athleticism</option>
+                      <option value="executive-recomp">Executive Body Recomposition</option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Preferred Consultation Date & Time Slot -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-brand-softWhite mb-2" for="consultation-date">
+                      Preferred Date <span class="text-brand-lime">*</span>
+                    </label>
+                    <input class="input-interactive w-full bg-brand-black border border-brand-border rounded-xl px-4 py-3 text-sm text-brand-softWhite focus:outline-none" 
+                           id="consultation-date" 
+                           name="consultation-date" 
+                           required 
+                           type="date">
+                  </div>
+
+                  <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-brand-softWhite mb-2" for="consultation-time">
+                      Available Time Slot <span class="text-brand-lime">*</span>
+                    </label>
+                    <select class="input-interactive w-full bg-brand-black border border-brand-border rounded-xl px-4 py-3 text-sm text-brand-softWhite focus:outline-none cursor-pointer" 
+                            id="consultation-time" 
+                            name="consultation-time" 
+                            required>
+                      <option value="">Select a date first...</option>
+                    </select>
+                    <p id="slots-status-message" class="text-[11px] text-brand-muted mt-1.5 hidden"></p>
+                  </div>
+                </div>
+
+                <!-- Training Experience Radios -->
+                <fieldset>
+                  <legend class="block text-xs font-bold uppercase tracking-wider text-brand-softWhite mb-2">
+                    Training Experience
+                  </legend>
+                  <div class="grid grid-cols-3 gap-3">
+                    <label class="cursor-pointer experience-radio-label">
+                      <input checked class="peer sr-only" name="experience" type="radio" value="beginner">
+                      <div class="p-3 text-center rounded-xl bg-brand-black border border-brand-border text-xs font-bold text-brand-muted peer-checked:border-brand-lime peer-checked:text-brand-lime peer-checked:bg-brand-lime/10 peer-checked:shadow-glow-lime-sm transition-all duration-200">
+                        0-1 Years
+                      </div>
+                    </label>
+
+                    <label class="cursor-pointer experience-radio-label">
+                      <input class="peer sr-only" name="experience" type="radio" value="intermediate">
+                      <div class="p-3 text-center rounded-xl bg-brand-black border border-brand-border text-xs font-bold text-brand-muted peer-checked:border-brand-lime peer-checked:text-brand-lime peer-checked:bg-brand-lime/10 peer-checked:shadow-glow-lime-sm transition-all duration-200">
+                        1-3 Years
+                      </div>
+                    </label>
+
+                    <label class="cursor-pointer experience-radio-label">
+                      <input class="peer sr-only" name="experience" type="radio" value="advanced">
+                      <div class="p-3 text-center rounded-xl bg-brand-black border border-brand-border text-xs font-bold text-brand-muted peer-checked:border-brand-lime peer-checked:text-brand-lime peer-checked:bg-brand-lime/10 peer-checked:shadow-glow-lime-sm transition-all duration-200">
+                        3+ Years
+                      </div>
+                    </label>
+                  </div>
+                </fieldset>
+
+                <!-- Biggest Obstacle Notes -->
+                <div>
+                  <label class="block text-xs font-bold uppercase tracking-wider text-brand-softWhite mb-2" for="notes">
+                    What is your biggest current obstacle? (Optional)
+                  </label>
+                  <textarea class="input-interactive w-full bg-brand-black border border-brand-border rounded-xl px-4 py-3 text-sm text-brand-softWhite focus:outline-none" 
+                            id="notes" 
+                            name="notes" 
+                            placeholder="Tell us about past injuries, work schedule constraints, or specific targets..." 
+                            rows="3"></textarea>
+                </div>
+
+                <!-- Submission Button -->
+                <div>
+                  <button class="btn-magnetic w-full py-4 px-6 rounded-xl bg-brand-lime text-brand-black font-extrabold text-sm uppercase tracking-wider shadow-glow-lime-sm flex items-center justify-center gap-2" 
+                          id="submit-btn" 
+                          type="submit">
+                    <span id="submit-btn-text">Submit &amp; Request Free Intake Call</span>
+                    <svg class="btn-arrow w-4 h-4" width="16" height="16" fill="none" id="submit-btn-arrow" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+                    </svg>
+                    <!-- Spinner for processing state -->
+                    <svg class="animate-spin h-5 w-5 text-brand-black hidden" width="20" height="20" fill="none" id="submit-spinner" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                      <path class="opacity-75" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" fill="currentColor"></path>
+                    </svg>
+                  </button>
+
+                  <p class="text-center text-[11px] text-brand-muted mt-3">
+                    We respect your privacy. No spam. You will hear back via WhatsApp or Email within 24 hours.
+                  </p>
+                </div>
+              </form>
+
+              <!-- ================================================================
+                   CONSULTATION BOOKING CONFIRMATION MODAL OVERLAY
+                   ================================================================ -->
+              <div class="hidden absolute inset-0 bg-brand-graphite/95 backdrop-blur-md rounded-3xl flex flex-col items-center justify-center p-6 sm:p-10 text-center z-20 border border-brand-lime" 
+                   id="form-success-message" 
+                   role="dialog" 
+                   aria-modal="true" 
+                   aria-labelledby="demo-confirmation-title">
+                
+                <div class="w-16 h-16 rounded-full bg-brand-lime/10 text-brand-lime flex items-center justify-center text-3xl font-black mb-4 shadow-glow-lime-sm animate-bounce" aria-hidden="true">
+                  ✓
+                </div>
+
+                <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-lime/10 text-brand-lime text-[11px] font-extrabold uppercase tracking-widest border border-brand-lime/30 mb-3">
+                  Intake Request Submitted
+                </div>
+
+                <h3 class="font-display font-black text-2xl text-brand-softWhite uppercase mb-2" id="demo-confirmation-title">
+                  Strategy Call Requested
+                </h3>
+
+                <p class="text-xs text-brand-muted max-w-md mb-6 leading-relaxed">
+                  Thank you! Your consultation request has been placed in Coach Haisam's queue. Your requested date and time are <strong class="text-brand-lime font-medium">pending trainer confirmation</strong>. You will receive email/WhatsApp confirmation within 24 hours.
+                </p>
+
+                <!-- Submitted Data Snapshot -->
+                <div class="w-full max-w-md bg-brand-black/70 rounded-xl p-4 border border-white/10 text-left text-xs mb-6 space-y-2">
+                  <div class="flex justify-between border-b border-white/5 pb-1">
+                    <span class="text-brand-muted">Name:</span>
+                    <span class="text-brand-softWhite font-bold" id="summary-name"></span>
+                  </div>
+                  <div class="flex justify-between border-b border-white/5 pb-1">
+                    <span class="text-brand-muted">Email:</span>
+                    <span class="text-brand-softWhite font-semibold" id="summary-email"></span>
+                  </div>
+                  <div class="flex justify-between border-b border-white/5 pb-1">
+                    <span class="text-brand-muted">Phone:</span>
+                    <span class="text-brand-softWhite font-semibold" id="summary-phone"></span>
+                  </div>
+                  <div class="flex justify-between border-b border-white/5 pb-1">
+                    <span class="text-brand-muted">Target Goal:</span>
+                    <span class="text-brand-lime font-bold" id="summary-goal"></span>
+                  </div>
+                  <div class="flex justify-between border-b border-white/5 pb-1">
+                    <span class="text-brand-muted">Requested Time:</span>
+                    <span class="text-brand-lime font-bold" id="summary-datetime"></span>
+                  </div>
+                  <div class="flex justify-between border-b border-white/5 pb-1">
+                    <span class="text-brand-muted">Modality:</span>
+                    <span class="text-brand-softWhite font-semibold" id="summary-modality">100% Remote Video Call</span>
+                  </div>
+                  <div class="flex justify-between border-b border-white/5 pb-1">
+                    <span class="text-brand-muted">Booking Status:</span>
+                    <span class="text-amber-400 font-bold" id="summary-status">Pending Confirmation</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-brand-muted">Experience:</span>
+                    <span class="text-brand-softWhite font-semibold" id="summary-experience"></span>
+                  </div>
+                </div>
+
+                <button class="btn-magnetic px-7 py-3 rounded-full bg-brand-lime text-brand-black font-extrabold text-xs uppercase tracking-wider hover:bg-brand-limeHover shadow-glow-lime-sm" 
+                        id="reset-form-btn" 
+                        type="button">
+                  Done
+                </button>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+    <!-- END: Consultation Booking Intake Section -->
+
+  </main>
+
+  <!-- ========================================================================
+       Floating Back to Top Interactive Button
+       ======================================================================== -->
+  <button aria-label="Back to Top" 
+          class="fixed bottom-6 right-6 z-40 p-3.5 rounded-full bg-brand-surface border border-white/20 text-brand-lime shadow-2xl opacity-0 translate-y-4 pointer-events-none transition-all duration-300 hover:border-brand-lime hover:scale-110 active:scale-95 hover:shadow-glow-lime-sm" 
+          id="floating-back-to-top" 
+          type="button">
+    <svg class="w-5 h-5" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M5 10l7-7m0 0l7 7m-7-7v18" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+    </svg>
+  </button>
+
+  <!-- ========================================================================
+       BEGIN: Footer
+       ======================================================================== -->
+  <footer class="bg-brand-black border-t border-brand-border py-16 relative z-10" data-purpose="site-footer">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-col md:flex-row items-center justify-between gap-8 pb-12 border-b border-white/5">
+        
+        <!-- Footer Brand Mark -->
+        <div class="flex flex-col items-center md:items-start text-center md:text-left">
+          <a class="mb-4 inline-block group" href="#hero" aria-label="Return to top of FORGE FITNESS Homepage">
+            <img alt="FORGE FITNESS Logo" 
+                 class="h-8 w-auto object-contain transition-transform group-hover:scale-105" 
+                 src="assets/images/logo.png"
+                 onerror="this.src='https://lh3.googleusercontent.com/aida/AEtjO1Udp5ODC8XCzB0NuX7NJhVmBUsnjJYaZKN189vZJKf4dMgIE2GypRVVFC5X3wXPcCz4-xrwnVmeI6JNFDO9JVaa3cezmu2FIAsE4qVl1Tk4PZ-1rFgceL3bx8x-rgim5JmZe9thHheAVU2sxlMD19wxQd9MsklbINj0YEQUDKT_CcxZFqdf-ShxrocErRyarHDa8oOweOMP382bDIWzeFuUYxseYFFhcqCkYzoUiLs7wyRHR03HcI5m7O8'"
+                 width="160" height="32">
+          </a>
+          <p class="text-xs text-brand-muted max-w-xs leading-relaxed">
+            Scientific strength engineering, customized nutrition protocols, and relentless accountability.
+          </p>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="flex flex-wrap justify-center gap-6 text-xs uppercase tracking-wider font-semibold text-brand-muted" aria-label="Footer Navigation">
+          <a class="nav-link hover:text-brand-lime transition-colors" href="#hero">Home</a>
+          <a class="nav-link hover:text-brand-lime transition-colors" href="#programs">Programs</a>
+          <a class="nav-link hover:text-brand-lime transition-colors" href="#transformations">Transformations</a>
+          <a class="nav-link hover:text-brand-lime transition-colors" href="#coach">Coach</a>
+          <a class="nav-link hover:text-brand-lime transition-colors" href="#consultation">Free Intake</a>
+        </div>
+
+        <!-- Back to Top Button in Footer -->
+        <div>
+          <button aria-label="Back to top" 
+                  class="footer-top-btn inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-surface border border-white/10 text-xs font-bold text-brand-softWhite hover:border-brand-lime hover:text-brand-lime hover:shadow-glow-lime-sm transition-all duration-300 transform hover:-translate-y-1" 
+                  id="footer-top-btn" 
+                  type="button">
+            <span>Top</span>
+            <svg class="w-3.5 h-3.5" width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M5 10l7-7m0 0l7 7m-7-7v18" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+            </svg>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Copyright & Legal -->
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-brand-muted">
+        <p>© <span id="current-year">2026</span> FORGE FITNESS Coaching. All rights reserved.</p>
+        <div class="flex gap-6">
+          <button class="hover:text-brand-lime hover:underline transition-colors focus:outline-none" data-legal-modal="privacy" type="button">Privacy Policy</button>
+          <button class="hover:text-brand-lime hover:underline transition-colors focus:outline-none" data-legal-modal="terms" type="button">Terms of Service</button>
+          <button class="hover:text-brand-lime hover:underline transition-colors focus:outline-none" data-legal-modal="disclaimer" type="button">Disclaimer</button>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+  <!-- END: Footer -->
+
+  <!-- ========================================================================
+       BEGIN: Accessible Legal Modal
+       ======================================================================== -->
+  <div class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop" 
+       id="legal-modal" 
+       role="dialog" 
+       aria-modal="true" 
+       aria-labelledby="legal-modal-title">
+    
+    <div class="glass-card max-w-lg w-full rounded-2xl p-6 sm:p-8 border border-white/10 shadow-2xl relative">
+      <div class="flex items-center justify-between border-b border-white/10 pb-4 mb-4">
+        <h3 class="font-display font-black text-xl uppercase text-brand-softWhite" id="legal-modal-title">
+          Legal Information
+        </h3>
+        <button class="p-1 rounded-lg text-brand-muted hover:text-brand-lime focus:outline-none" 
+                id="legal-modal-close" 
+                aria-label="Close dialog" 
+                type="button">
+          <svg class="w-5 h-5" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+          </svg>
+        </button>
+      </div>
+
+      <div class="text-sm text-brand-muted leading-relaxed max-h-[60vh] overflow-y-auto pr-2" id="legal-modal-body">
+        <!-- Injected via main.js -->
+      </div>
+
+      <div class="mt-6 pt-4 border-t border-white/10 text-right">
+        <button class="btn-magnetic px-5 py-2 rounded-full bg-brand-surface border border-white/10 text-xs font-bold text-brand-softWhite hover:text-brand-lime hover:border-brand-lime" 
+                onclick="document.getElementById('legal-modal-close').click()" 
+                type="button">
+          Dismiss
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- END: Accessible Legal Modal -->
+
+  <!-- Interactive JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="assets/js/supabase-config.js?v=2.0"></script>
+  <script src="assets/js/trainer-data.js?v=2.0"></script>
+  <script src="assets/js/main.js?v=2.0"></script>
+</body>
+</html>

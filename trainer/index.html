@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Redirecting to FORGE FITNESS Trainer Portal...</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../assets/js/supabase-config.js"></script>
+  <script src="../assets/js/trainer-data.js"></script>
+  <script src="../assets/js/trainer-auth.js"></script>
+  <script>
+    (async function () {
+      if (window.TrainerAuth && await window.TrainerAuth.isAuthenticatedAsync()) {
+        window.location.replace('dashboard.html');
+      } else {
+        window.location.replace('login.html');
+      }
+    })();
+  </script>
+</head>
+<body style="background-color: #090B0A; color: #B8FF38; font-family: sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0;">
+  <p>Redirecting to Trainer Portal...</p>
+</body>
+</html>
