@@ -25,10 +25,10 @@ FORGE FITNESS helps fitness professionals showcase their services, manage consul
 ## 📸 Screenshots
 
 ### Homepage
-![FORGE FITNESS front page](front page.png)
+![FORGE FITNESS front page](front page .png.png)
 
 ### Booking Form
-![Consultation form booking](form booking.png)
+![Consultation form booking](form booking page.png)
 
 ### Trainer Dashboard
 ![Trainer Trainer page](Trainer page.png)
